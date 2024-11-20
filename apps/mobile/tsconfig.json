@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "expo/tsconfig.base",
+    "@playnest/typescript-config/react-native-library.json"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/__tests__/**",
+    "src/**/tests/**",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "extends": "@playnest/typescript-config/shared-library.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "eslint.config.js",
+    "prettier.config.js"
+  ]
+}
