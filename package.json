@@ -6,17 +6,19 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-
     "api:dev": "turbo run dev --filter=@playnest/api",
     "mobile:dev": "turbo run dev --filter=@playnest/mobile",
     "mobile:android": "turbo run android --filter=@playnest/mobile",
-    "mobile:ios": "turbo run ios --filter=@playnest/mobile"
+    "mobile:ios": "turbo run ios --filter=@playnest/mobile",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.2.5",
     "turbo": "^2.2.3",
-    "typescript": "5.5.4",
-    "eslint": "^8.57.0"
+    "typescript": "5.5.4"
   },
   "engines": {
     "node": ">=18"
@@ -25,5 +27,22 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "lint-staged": {
+    "apps/api/src/**/*.{js,ts}": [
+      "npm run format",
+      "turbo lint --filter=@playnest/api --"
+    ],
+    "apps/mobile/**/*.{js,jsx,ts,tsx}": [
+      "npm run format",
+      "turbo lint --filter=@playnest/mobile --"
+    ],
+    "packages/utils/src/**/*.{js,ts}": [
+      "npm run format",
+      "turbo lint --filter=@playnest/utils --"
+    ],
+    "**/*.{json,md,config.js,config.mjs,yaml,yml}": [
+      "prettier --write"
+    ]
+  }
 }
