@@ -45,17 +45,17 @@ pnpm install
 To start all apps and packages in dev mode:
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 To develop web (omits mobile):
 
 ```bash
-pnpm run dev:web
+pnpm dev:web
 ```
 
 To develop mobile (omits web):
 
 ```bash
-pnpm run dev:mobile
+pnpm dev:mobile
 ```
