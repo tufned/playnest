@@ -12,6 +12,7 @@
     "mobile:ios": "turbo run ios --filter=@playnest/mobile",
     "prepare": "husky install"
   },
+  "packageManager": "pnpm@9.0.0",
   "devDependencies": {
     "eslint": "^8.57.0",
     "husky": "^8.0.0",
@@ -23,11 +24,6 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.2.4",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "lint-staged": {
     "apps/api/src/**/*.{js,ts}": [
       "npm run format",

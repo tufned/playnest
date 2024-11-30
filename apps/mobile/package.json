@@ -17,9 +17,9 @@
     "react-native": "0.76.1"
   },
   "devDependencies": {
-    "@playnest/prettier-config": "*",
-    "@playnest/eslint-config": "*",
-    "@playnest/typescript-config": "*",
+    "@playnest/prettier-config": "workspace:*",
+    "@playnest/eslint-config": "workspace:*",
+    "@playnest/typescript-config": "workspace:*",
     "@babel/core": "^7.25.2",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
