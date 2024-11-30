@@ -2,6 +2,8 @@ This is a monorepo built using `Turborepo`.
 
 # Apps and Packages
 
+---
+
 - `@playnest/api`: Express.js app
 - `@playnest/mobile`: React Native app
 - `@playnest/web`: Next.js app
@@ -13,6 +15,8 @@ This is a monorepo built using `Turborepo`.
 Each app and `utils` package is 100% [TypeScript](https://www.typescriptlang.org/).
 
 # How To Launch
+
+---
 
 ## Step 1
 
@@ -59,3 +63,15 @@ To develop mobile (omits web):
 ```bash
 pnpm dev:mobile
 ```
+
+# Contributing
+
+---
+
+1. Create an **issue**. Assign yourself
+2. Create a **new branch** from `dev` branch. Every branch name should start with task number and contain short description. e.g. **125-navbar-fix**
+3. Commit changes
+4. Create a **pull request**
+5. Link pull request to an issue
+6. **Squash and merge** into `dev` branch
+7. **Delete** task branch (e.g. **125-navbar-fix**)
