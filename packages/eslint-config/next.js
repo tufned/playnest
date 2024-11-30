@@ -3,7 +3,7 @@ import globals from 'globals';
 import baseConfig from '@playnest/eslint-config/base';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactPlugin from 'eslint-plugin-react';
-import reactNativePlugin from 'eslint-plugin-react-native';
+import nextPlugin from '@next/eslint-plugin-next';
 import reactRules from './react-rules.js';
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -12,7 +12,10 @@ export default tseslint.config(
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...nextPlugin.configs.recommended.globals
+      },
       parserOptions: {
         ecmaFeatures: {
           jsx: true
@@ -22,25 +25,29 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react': reactPlugin,
-      'react-native': reactNativePlugin
+      '@next/next': nextPlugin
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...reactRules,
 
-      // React Native rules
-      'react-native/no-unused-styles': 'warn',
-      'react-native/split-platform-components': 'error',
-      'react-native/no-inline-styles': 'error',
-      'react-native/no-color-literals': 'warn',
-      'react-native/no-raw-text': ['error', {
-        skip: ['Text']
-      }],
-      'react-native/no-single-element-style-arrays': 'error'
+      // Next.js rules
+      '@next/next/no-html-link-for-pages': 'error',
+      '@next/next/no-img-element': 'error',
+      '@next/next/no-head-element': 'error',
+      '@next/next/no-unwanted-polyfillio': 'warn',
+      '@next/next/no-sync-scripts': 'error',
+      '@next/next/no-document-import-in-page': 'error',
+      '@next/next/no-title-in-document-head': 'error',
+      '@next/next/google-font-display': 'error',
+      '@next/next/no-page-custom-font': 'error'
     },
     settings: {
       react: {
         version: 'detect'
+      },
+      next: {
+        rootDir: '.'
       }
     }
   }

@@ -2,17 +2,13 @@
   "name": "@playnest/mobile",
   "version": "1.0.0",
   "main": "index.ts",
+  "private": true,
   "scripts": {
     "dev": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint ."
-  },
-  "peerDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "typescript": "5.5.4"
   },
   "dependencies": {
     "expo": "~52.0.6",
@@ -25,7 +21,9 @@
     "@playnest/eslint-config": "*",
     "@playnest/typescript-config": "*",
     "@babel/core": "^7.25.2",
-    "@types/react": "~18.3.12"
-  },
-  "private": true
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "5.5.4",
+    "@types/react": "^18"
+  }
 }

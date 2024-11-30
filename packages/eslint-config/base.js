@@ -9,7 +9,7 @@ import tseslintParser from '@typescript-eslint/parser';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { ignores: ['dist/*', 'node_modules/*', '.turbo/*'] },
+  { ignores: ['dist/*', 'node_modules/*', '.turbo/*', '.next/*'] },
   { files: ['**/*.{ts}'] },
   {
     languageOptions: {
