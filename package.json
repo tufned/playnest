@@ -14,6 +14,9 @@
     "prepare": "husky install"
   },
   "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "eslint": "^8.57.0",
     "husky": "^8.0.0",
@@ -21,25 +24,5 @@
     "prettier": "^3.2.5",
     "turbo": "^2.2.3",
     "typescript": "5.5.4"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "lint-staged": {
-    "apps/api/src/**/*.{js,ts}": [
-      "npm run format",
-      "turbo lint --filter=@playnest/api --"
-    ],
-    "apps/mobile/**/*.{js,jsx,ts,tsx}": [
-      "npm run format",
-      "turbo lint --filter=@playnest/mobile --"
-    ],
-    "packages/utils/src/**/*.{js,ts}": [
-      "npm run format",
-      "turbo lint --filter=@playnest/utils --"
-    ],
-    "**/*.{json,md,config.js,config.mjs,yaml,yml}": [
-      "prettier --write"
-    ]
   }
 }
