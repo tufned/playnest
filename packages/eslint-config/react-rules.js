@@ -2,7 +2,7 @@ const reactRules = {
   // React
   'react/prop-types': 'off',
   'react/react-in-jsx-scope': 'off',
-  'react/self-closing-comp': 'error',
+  'react/self-closing-comp': 'off',
   'react/jsx-boolean-value': 'error',
   'react/jsx-curly-brace-presence': 'error',
   'react/jsx-fragments': 'error',
