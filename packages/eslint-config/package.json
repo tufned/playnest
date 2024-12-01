@@ -5,7 +5,8 @@
   "exports": {
     "./base": "./base.js",
     "./node": "./node.js",
-    "./react-native": "./react-native.js"
+    "./react-native": "./react-native.js",
+    "./next": "./next.js"
   },
   "peerDependencies": {
     "eslint": "^8.57.0",
@@ -14,7 +15,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
-    "@playnest/prettier-config": "*",
+    "@playnest/prettier-config": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "eslint-config-prettier": "^9.1.0",
@@ -23,6 +24,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-native": "^4.1.0",
+    "@next/eslint-plugin-next": "15.0.3",
     "globals": "13.24.0",
     "typescript-eslint": "^8.14.0"
   }

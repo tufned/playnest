@@ -1,0 +1,30 @@
+{
+  "name": "@playnest/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
+  },
+  "devDependencies": {
+    "@playnest/prettier-config": "workspace:*",
+    "@playnest/eslint-config": "workspace:*",
+    "@playnest/typescript-config": "workspace:*",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "sass": "^1.81.0",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "5.5.4",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18"
+  }
+}

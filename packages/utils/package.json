@@ -16,9 +16,10 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@playnest/prettier-config": "*",
-    "@playnest/eslint-config": "*",
-    "@playnest/typescript-config": "*"
+    "@playnest/prettier-config": "workspace:*",
+    "@playnest/eslint-config": "workspace:*",
+    "@playnest/typescript-config": "workspace:*",
+    "@types/node": "^22.9.0"
   },
   "keywords": [],
   "author": "Den Funderat <funderatdenis@gmail.com>",
