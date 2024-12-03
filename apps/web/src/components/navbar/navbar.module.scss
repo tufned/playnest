@@ -1,0 +1,19 @@
+.navbarList {
+  @apply w-full flex flex-col items-center;
+
+  .navbarItem {
+    @apply cursor-pointer rounded-xl w-5/6 py-2 px-3 whitespace-nowrap select-none;
+  }
+
+  .navbarItem:hover {
+    @apply bg-primaryDimmed;
+  }
+
+  .linkNavbarItemActive {
+    @apply pointer-events-none;
+
+    .navbarItem {
+      @apply bg-secondary;
+    }
+  }
+}
