@@ -1,12 +1,11 @@
+@use '~/styles/partials/utils' as utils;
+
 .navbarList {
   @apply w-full flex flex-col items-center;
 
   .navbarItem {
-    @apply cursor-pointer rounded-xl w-5/6 py-2 px-3 whitespace-nowrap select-none;
-  }
-
-  .navbarItem:hover {
-    @apply bg-primaryDimmed;
+    @include utils.button-wrapper;
+    @apply w-5/6;
   }
 
   .linkNavbarItemActive {

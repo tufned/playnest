@@ -1,3 +1,13 @@
 @mixin flex-center {
   @apply flex items-center justify-center;
 }
+.flex-center {
+  @include flex-center;
+}
+
+@mixin button-wrapper {
+  @apply flex gap-2.5 rounded-xl py-2 px-3 select-none cursor-pointer whitespace-nowrap hover:bg-primaryDimmed;
+}
+.button-wrapper {
+  @include button-wrapper;
+}

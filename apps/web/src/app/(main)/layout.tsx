@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <div className='grid grid-cols-[220px_1fr] min-h-screen'>
       <Navbar />
-      <div className='grid grid-rows-[100px_1fr]'>
+      <div className='grid grid-rows-[100px_1fr] px-12'>
         <Header />
         <main>{children}</main>
       </div>
