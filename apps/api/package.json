@@ -2,11 +2,11 @@
   "name": "@playnest/api",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/app.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "dev": "nodemon",
     "lint": "eslint src"
   },
@@ -14,18 +14,20 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.3"
   },
   "devDependencies": {
-    "@playnest/prettier-config": "workspace:*",
     "@playnest/eslint-config": "workspace:*",
+    "@playnest/prettier-config": "workspace:*",
     "@playnest/typescript-config": "workspace:*",
     "@types/express": "^5.0.0",
-    "nodemon": "^3.1.7",
-    "ts-node": "^10.9.2",
+    "@types/node": "^22.9.0",
     "eslint": "^8.57.0",
+    "nodemon": "^3.1.7",
     "prettier": "^3.2.5",
-    "typescript": "5.5.4",
-    "@types/node": "^22.9.0"
+    "ts-node": "^10.9.2",
+    "typescript": "5.5.4"
   }
 }
