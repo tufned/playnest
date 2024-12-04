@@ -3,12 +3,9 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "baseUrl": "."
   },
-  "include": ["src/**/*", "eslint.config.js", "prettier.config.js"],
+  "include": ["src/**/*", "src/**/*.ts", "eslint.config.js", "prettier.config.js"],
   "exclude": [
     "node_modules",
     "dist",
