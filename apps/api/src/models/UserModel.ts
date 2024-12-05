@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { IUser } from '../types/models/user.interface.js';
+import { UserModel } from '@playnest/utils';
 
-const userSchema = new mongoose.Schema<IUser>({
+const userSchema = new mongoose.Schema<UserModel>({
   nickname: {
     type: String,
     required: true,

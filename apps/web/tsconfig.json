@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@playnest/utils": ["../../packages/utils/src"],
+      "@playnest/utils/*": ["../../packages/utils/src/*"]
     },
     "allowJs": true,
     "noEmit": true

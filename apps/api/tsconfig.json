@@ -3,7 +3,11 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@playnest/utils": ["../../packages/utils/src"],
+      "@playnest/utils/*": ["../../packages/utils/src/*"]
+    }
   },
   "include": ["src/**/*", "src/**/*.ts", "eslint.config.js", "prettier.config.js"],
   "exclude": [
