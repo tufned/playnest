@@ -4,5 +4,6 @@ export const errors = {
   userDoesNotExist: 'User does not exist',
   incorrectEmailOrPasw: 'Incorrect email or password',
   badRefreshToken: 'Bad refresh token',
-  refreshTokenNotRetrieved: 'Refresh token not retrieved'
+  refreshTokenNotRetrieved: 'Refresh token not retrieved',
+  accessDenied: 'Access denied'
 } as const;
