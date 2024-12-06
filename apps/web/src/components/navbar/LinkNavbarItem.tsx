@@ -2,7 +2,7 @@
 
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { Routes } from '~/types/common.types';
+import { Routes } from '~/types';
 import NavbarItem from '~/components/navbar/NavbarItem';
 import { NavbarItemProps } from '~/components/navbar/navbar.types';
 import { usePathname } from 'next/navigation';

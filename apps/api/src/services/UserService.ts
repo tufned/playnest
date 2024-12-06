@@ -5,20 +5,24 @@ import { errors } from '../constants/errors.js';
 
 class UserService {
   async getUserById(id: string) {
-    const user = await User.findById(id);
+    const user = await User.findById(id).exec();
     if (!user) return null;
     return user;
   }
 
-  async getUserByEmail(email: string) {
-    const user = await User.findOne({ email }).exec();
+  async getUserByField(field: string) {
+    const user = await User.findOne({ field }).exec();
     if (!user) return null;
     return user;
   }
 
   async createUser(user: IUserSignup) {
-    const duplicatedUser = await this.getUserByEmail(user.email);
-    if (duplicatedUser) throw createError(409, errors.alreadyRegistered);
+    const duplicatedUserNyEmail = await this.getUserByField(user.email);
+    const duplicatedUserNyNickname = await this.getUserByField(user.nickname);
+
+    if (duplicatedUserNyEmail) throw createError(409, errors.alreadyRegistered);
+    if (duplicatedUserNyNickname) throw createError(409, errors.nicknameIsTaken);
+
     return await User.create(user);
   }
 }

@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import Navbar from '~/components/navbar/Navbar';
 import Header from '~/components/header/Header';
 
-export default function RootLayout({
+export default function MainLayout({
   children
 }: Readonly<{
   children: ReactNode;

@@ -1,6 +1,7 @@
 export const errors = {
   fieldsAreRequired: (fields: string[]) => `Fields ${fields.join(', ')} are required`,
   alreadyRegistered: 'This email is already registered',
+  nicknameIsTaken: 'This nickname is already taken',
   userDoesNotExist: 'User does not exist',
   incorrectEmailOrPasw: 'Incorrect email or password',
   badRefreshToken: 'Bad refresh token',
