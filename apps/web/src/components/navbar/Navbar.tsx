@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className={styles.navbarList}>
           <NavbarItem title='username' icon={userIcon} />
           <NavbarItem title='Вийти' icon={logOutIcon} />
-          <NavbarItem title='Увійти' icon={logInIcon} />
+          <LinkNavbarItem route={routes.login} title='Увійти' icon={logInIcon} />
         </div>
       </div>
     </nav>

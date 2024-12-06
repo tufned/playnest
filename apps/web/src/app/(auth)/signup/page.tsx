@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from '~/styles/pages/auth.module.scss';
 import Input from '~/components/input/Input';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserSignupForm } from '~/types';
@@ -12,6 +11,7 @@ import PasswordVisibility from '~/components/auth/password-visibility/PasswordVi
 import { authConfig } from '@playnest/utils';
 import InputPassword from '~/components/auth/input-password/InputPassword';
 import InputEmail from '~/components/auth/input-email/InputEmail';
+import AuthForm from '~/components/auth/auth-form/AuthForm';
 
 const SignupPage = () => {
   const [isPaswInputShown, setIsPaswInputShown] = useState(false);
@@ -24,58 +24,55 @@ const SignupPage = () => {
   } = useForm<UserSignupForm>({ defaultValues });
 
   const onSubmit: SubmitHandler<UserSignupForm> = async (data) => {
+    // TODO: implement signup service to retrieve jwt tokens
     console.log(data);
     // const response = await authService.signup(data);
   };
 
   return (
-    <>
-      <h2 className='font-bold text-3xl mb-2'>Реєстрація</h2>
-      <form className='flex-col flex-center' onSubmit={handleSubmit(onSubmit)}>
+    <AuthForm page='signup' onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        label='Нік'
+        placeholder='ob1'
+        error={errors.nickname}
+        {...register('nickname', {
+          required: authErrors.requiredField(),
+          minLength: {
+            value: authConfig.nickname.minLength,
+            message: authErrors.minLength(authConfig.nickname.minLength)
+          },
+          maxLength: {
+            value: authConfig.nickname.maxLength,
+            message: authErrors.maxLength(authConfig.nickname.maxLength)
+          }
+        })}
+      />
+      <InputEmail error={errors.email} register={register} />
+      <InputPassword
+        error={errors.password}
+        register={register}
+        isPaswInputShown={isPaswInputShown}
+      />
+      <div className='flex flex-col items-end'>
         <Input
-          label='Нік'
-          placeholder='qwerty'
-          error={errors.nickname}
-          {...register('nickname', {
+          label='Підтвердження паролю'
+          placeholder={isPaswInputShown ? 'qwErty1234' : '********'}
+          error={errors.passwordConfirm}
+          {...register('passwordConfirm', {
             required: authErrors.requiredField(),
-            minLength: {
-              value: authConfig.nickname.minLength,
-              message: authErrors.minLength(authConfig.nickname.minLength)
-            },
-            maxLength: {
-              value: authConfig.nickname.maxLength,
-              message: authErrors.maxLength(authConfig.nickname.maxLength)
+            validate: (val) => {
+              const pasw = getValues('password');
+              return val === pasw || authErrors.passwordMismatch;
             }
           })}
+          type={isPaswInputShown ? 'text' : 'password'}
         />
-        <InputEmail error={errors.email} register={register} />
-        <InputPassword
-          error={errors.password}
-          register={register}
-          isPaswInputShown={isPaswInputShown}
+        <PasswordVisibility
+          visibilityToggle={() => setIsPaswInputShown((prev) => !prev)}
+          isVisible={isPaswInputShown}
         />
-        <div>
-          <Input
-            label='Підтвердження паролю'
-            placeholder='********'
-            error={errors.passwordConfirm}
-            {...register('passwordConfirm', {
-              required: authErrors.requiredField(),
-              validate: (val) => {
-                const pasw = getValues('password');
-                return val === pasw || authErrors.passwordMismatch;
-              }
-            })}
-            type={isPaswInputShown ? 'text' : 'password'}
-          />
-          <PasswordVisibility
-            visibilityToggle={() => setIsPaswInputShown((prev) => !prev)}
-            isVisible={isPaswInputShown}
-          />
-        </div>
-        <button className='button-primary mt-6'>Підтвердити</button>
-      </form>
-    </>
+      </div>
+    </AuthForm>
   );
 };
 

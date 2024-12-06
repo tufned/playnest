@@ -18,7 +18,7 @@ const InputPassword = <T extends FieldValues>({
   return (
     <Input
       label='Пароль'
-      placeholder='********'
+      placeholder={isPaswInputShown ? 'qwErty1234' : '********'}
       error={error}
       {...register('password' as Path<T>, {
         required: authErrors.requiredField(),

@@ -13,5 +13,5 @@ input {
 }
 
 .button-primary {
-  @apply rounded-full border border-primaryDimmed px-3 py-1.5;
+  @apply select-none cursor-pointer rounded-xl border border-primaryDimmed px-4 py-2 hover:bg-secondary hover:border-secondaryBorder;
 }

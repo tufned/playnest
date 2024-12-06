@@ -10,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: FC<InputProps> = ({ label, placeholder, extraStyles, error, ...props }) => {
   return (
-    <div className='flex-col py-2'>
+    <div className='flex-col py-1'>
       <span className='block pl-4'>{label}</span>
       <input
         className={`w-72 border border-primaryDimmed bg-transparent ${extraStyles} ${error ? 'border-alert' : ''}`}

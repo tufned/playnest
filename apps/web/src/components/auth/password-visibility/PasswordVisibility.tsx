@@ -16,7 +16,7 @@ const PasswordVisibility: FC<InputPasswordVisibilityWrapperProps> = ({
 }) => {
   return (
     <div
-      className='flex items-center justify-end gap-1 cursor-pointer select-none'
+      className='flex items-center justify-end gap-1 cursor-pointer select-none button-wrapper py-1 px-2 rounded-lg size-fit'
       onClick={visibilityToggle}
     >
       {isVisible ? (
