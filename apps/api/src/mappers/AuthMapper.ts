@@ -1,17 +1,27 @@
-import { IUser } from '@playnest/utils';
-import { checkFieldsExistence } from '../utils/requestValidations.js';
-import { hashString } from '../lib/bcrypt.js';
+import { IUserSignup, IUserLogin } from '@playnest/utils';
+import { createHash } from '../lib/bcrypt.js';
+import { createError } from '../utils/errorHelpers.js';
+import { errors } from '../constants/errors.js';
 
 class AuthMapper {
-  async mapSignupData(rawUser: IUser): Promise<IUser> {
-    checkFieldsExistence(rawUser, ['nickname', 'email', 'password']);
+  async mapRequestSignupData(rawUser: Partial<IUserSignup>): Promise<IUserSignup> {
+    if (!rawUser?.nickname || !rawUser?.email || !rawUser?.password)
+      throw createError(406, errors.fieldsAreRequired(['nickname', 'email', 'password']));
 
-    const hashedPassword = await hashString(rawUser.password.toString().trim());
+    const hashedPassword = await createHash(rawUser.password.toString().trim());
 
     return {
       nickname: rawUser.nickname.toString().trim(),
-      email: rawUser.email.toString().trim(),
+      email: rawUser.email.toString().trim().toLowerCase(),
       password: hashedPassword
+    };
+  }
+
+  async mapRequestLoginData(rawUser: Partial<IUserLogin>): Promise<IUserLogin> {
+    const { email, password } = rawUser;
+    return {
+      email: email ? email.toString().trim().toLowerCase() : '',
+      password: password ? password.toString().trim() : ''
     };
   }
 }

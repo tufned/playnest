@@ -2,32 +2,44 @@ import { Request, Response } from 'express';
 import { success } from '../utils/responses.js';
 import AuthMapper from '../mappers/AuthMapper.js';
 import AuthService from '../services/AuthService.js';
-import UserMapper from '../mappers/UserMapper.js';
+import { authConfig, COOKIE_OPTIONS } from '../constants/auth.js';
+import { createError } from '../utils/errorHelpers.js';
+import { errors } from '../constants/errors.js';
 
 class AuthController {
   private readonly authService: AuthService;
   private readonly authMapper: AuthMapper;
-  private readonly userMapper: UserMapper;
 
   constructor() {
     this.authService = new AuthService();
     this.authMapper = new AuthMapper();
-    this.userMapper = new UserMapper();
   }
 
-  async signup(req: Request, res: Response) {
-    const user = await this.authMapper.mapSignupData(req.body);
+  refreshAccessToken = async (req: Request, res: Response) => {
+    const { refreshToken } = req.cookies;
+    if (!refreshToken) throw createError(401, errors.refreshTokenNotRetrieved);
 
-    const userDoc = await this.authService.signup(user);
+    const tokens = await this.authService.refreshAccessToken(refreshToken);
 
-    const userResponse = await this.userMapper.mapUserDoc(userDoc);
+    res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.status(200).json(success({ accessToken: tokens.accessToken }));
+  };
 
-    res.status(201).json(success(userResponse));
-  }
+  signup = async (req: Request, res: Response) => {
+    const user = await this.authMapper.mapRequestSignupData(req.body);
+    const tokens = await this.authService.signup(user);
 
-  async login(req: Request, res: Response) {
-    res.status(200).send('auth/login');
-  }
+    res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.status(201).json(success({ accessToken: tokens.accessToken }));
+  };
+
+  login = async (req: Request, res: Response) => {
+    const user = await this.authMapper.mapRequestLoginData(req.body);
+    const tokens = await this.authService.login(user);
+
+    res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.status(200).json(success({ accessToken: tokens.accessToken }));
+  };
 }
 
 export default new AuthController();

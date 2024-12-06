@@ -1,1 +1,1 @@
-export * from './models/user.interface.js';
+export * from './models/user.types.js';

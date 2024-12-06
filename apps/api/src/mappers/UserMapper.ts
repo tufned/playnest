@@ -1,8 +1,8 @@
 import { HydratedDocument } from 'mongoose';
-import { IUserResponse, UserModel } from '@playnest/utils';
+import { IUserJwtPayload, IUserResponse, UserModel } from '@playnest/utils';
 
 class UserMapper {
-  async mapUserDoc(user: HydratedDocument<UserModel>): Promise<IUserResponse> {
+  toResponse(user: HydratedDocument<UserModel>): IUserResponse {
     return {
       id: user._id,
       nickname: user.nickname,
@@ -10,6 +10,13 @@ class UserMapper {
       role: user.role,
       lastChangedAt: user.lastChangedAt,
       createdAt: user.createdAt
+    };
+  }
+
+  toJwtPayload(user: HydratedDocument<UserModel>): IUserJwtPayload {
+    return {
+      id: user._id,
+      role: user.role
     };
   }
 }
