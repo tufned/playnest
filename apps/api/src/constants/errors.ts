@@ -1,10 +1,19 @@
 export const errors = {
-  fieldsAreRequired: (fields: string[]) => `Fields ${fields.join(', ')} are required`,
-  alreadyRegistered: 'This email is already registered',
-  nicknameIsTaken: 'This nickname is already taken',
-  userDoesNotExist: 'User does not exist',
-  incorrectEmailOrPasw: 'Incorrect email or password',
-  badRefreshToken: 'Bad refresh token',
-  refreshTokenNotRetrieved: 'Refresh token not retrieved',
-  accessDenied: 'Access denied'
+  fieldsAreRequired: (fields: string[]) => `Поля ${fields.join(', ')} є обов'язковими`,
+  alreadyRegistered: 'Ця електронна пошта вже зареєстрована',
+  nicknameIsTaken: 'Цей псевдонім вже зайнятий',
+  userDoesNotExist: 'Користувача з цієї поштою не існує',
+  incorrectEmailOrPasw: 'Неправильна пошта або пароль',
+  badRefreshToken: 'Недійсний refresh token',
+  refreshTokenNotRetrieved: 'Refresh token не отримано',
+  accessDenied: 'Доступ заборонено'
+} as const;
+
+export const schemaErrors = {
+  minLength: (length: number) => `Довжина має бути більшою за ${length}`,
+  maxLength: (length: number) => `Довжина має бути меншою за ${length}`,
+  required: (field: string) => `Поле ${field} є обовʼязковим`,
+  enum: (field: string, arr: string[]) =>
+    `Значення поля ${field} може бути одне з наведених: ${arr.join(', ')}`,
+  emailSymbol: 'Email має містити "@" символ'
 } as const;

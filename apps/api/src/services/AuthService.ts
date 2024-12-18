@@ -36,7 +36,7 @@ class AuthService {
   }
 
   async login(user: IUserLogin): Promise<ITokens> {
-    const userDoc = await this.userService.getUserByField(user.email);
+    const userDoc = await this.userService.getUserByField({ email: user.email });
     if (!userDoc) throw createError(404, errors.userDoesNotExist);
 
     const isValidPassword = await compareHash(user.password, userDoc.password);

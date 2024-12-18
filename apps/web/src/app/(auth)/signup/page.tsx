@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserSignupForm } from '~/types';
 import authService from '~/services/auth';
 import { defaultValues } from '~/app/(auth)/signup/constats';
-import authErrors from '~/constants/errors/auth';
+import { authErrors } from '~/constants/errors';
 import PasswordVisibility from '~/components/auth/password-visibility/PasswordVisibility';
 import { authConfig } from '@playnest/utils';
 import InputPassword from '~/components/auth/input-password/InputPassword';
@@ -24,15 +24,16 @@ const SignupPage = () => {
   } = useForm<UserSignupForm>({ defaultValues });
 
   const onSubmit: SubmitHandler<UserSignupForm> = async (data) => {
-    // TODO: implement signup service to retrieve jwt tokens
-    console.log(data);
-    // const response = await authService.signup(data);
+    const response = await authService.signup(data);
+    console.log(response);
+    // TODO: implement error message
+    // TODO: implement redirection and save jwt tokens
   };
 
   return (
     <AuthForm page='signup' onSubmit={handleSubmit(onSubmit)}>
       <Input
-        label='Нік'
+        label='Псевдонім'
         placeholder='ob1'
         error={errors.nickname}
         {...register('nickname', {

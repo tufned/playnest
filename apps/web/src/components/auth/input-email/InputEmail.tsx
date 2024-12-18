@@ -1,5 +1,5 @@
 import React from 'react';
-import authErrors from '~/constants/errors/auth';
+import { authErrors } from '~/constants/errors';
 import { authConfig } from '@playnest/utils';
 import Input from '~/components/input/Input';
 import { FieldError, FieldValues, Path, UseFormReturn } from 'react-hook-form';

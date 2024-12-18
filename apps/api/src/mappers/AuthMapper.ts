@@ -6,7 +6,7 @@ import { errors } from '../constants/errors.js';
 class AuthMapper {
   async mapRequestSignupData(rawUser: Partial<IUserSignup>): Promise<IUserSignup> {
     if (!rawUser?.nickname || !rawUser?.email || !rawUser?.password)
-      throw createError(406, errors.fieldsAreRequired(['nickname', 'email', 'password']));
+      throw createError(406, errors.fieldsAreRequired(['псевдонім', 'email', 'пароль']));
 
     const hashedPassword = await createHash(rawUser.password.toString().trim());
 

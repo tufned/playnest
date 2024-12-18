@@ -13,7 +13,7 @@ const Input: FC<InputProps> = ({ label, placeholder, extraStyles, error, ...prop
     <div className='flex-col py-1'>
       <span className='block pl-4'>{label}</span>
       <input
-        className={`w-72 border border-primaryDimmed bg-transparent ${extraStyles} ${error ? 'border-alert' : ''}`}
+        className={`w-72 border border-primaryDimmed bg-transparent ${extraStyles || ''} ${error ? '!border-alert' : ''}`}
         placeholder={placeholder}
         {...props}
       />

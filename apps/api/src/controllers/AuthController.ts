@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { success } from '../utils/responses.js';
+import { success } from '@playnest/utils';
 import AuthMapper from '../mappers/AuthMapper.js';
 import AuthService from '../services/AuthService.js';
 import { authConfig, COOKIE_OPTIONS } from '../constants/auth.js';

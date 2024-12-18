@@ -8,6 +8,7 @@ import InputPassword from '~/components/auth/input-password/InputPassword';
 import PasswordVisibility from '~/components/auth/password-visibility/PasswordVisibility';
 import { IUserLogin } from '@playnest/utils';
 import { defaultValues } from '~/app/(auth)/login/constants';
+import authService from '~/services/auth';
 
 const LoginPage = () => {
   const [isPaswInputShown, setIsPaswInputShown] = useState(false);
@@ -19,8 +20,10 @@ const LoginPage = () => {
   } = useForm<IUserLogin>({ defaultValues });
 
   const onSubmit: SubmitHandler<IUserLogin> = async (data) => {
-    // TODO: implement login service to retrieve jwt tokens
-    console.log(data);
+    const response = await authService.login(data);
+    console.log(response);
+    // TODO: implement error message
+    // TODO: implement redirection and save jwt tokens
   };
 
   return (
