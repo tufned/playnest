@@ -12,8 +12,14 @@ import { authConfig } from '@playnest/utils';
 import InputPassword from '~/components/auth/input-password/InputPassword';
 import InputEmail from '~/components/auth/input-email/InputEmail';
 import AuthForm from '~/components/auth/auth-form/AuthForm';
+import { setAccessToken } from '~/redux/api/auth';
+import { useAppDispatch } from '~/hooks/useRedux';
+import { useRouter } from 'next/navigation';
+import routes from '~/constants/routes';
 
 const SignupPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [isPaswInputShown, setIsPaswInputShown] = useState(false);
 
   const {
@@ -25,9 +31,12 @@ const SignupPage = () => {
 
   const onSubmit: SubmitHandler<UserSignupForm> = async (data) => {
     const response = await authService.signup(data);
-    console.log(response);
-    // TODO: implement error message
-    // TODO: implement redirection and save jwt tokens
+
+    // TODO: implement snackbar error message
+    if (!response.success) return console.error(response.message);
+
+    dispatch(setAccessToken(response.data!.accessToken));
+    router.replace(routes.index);
   };
 
   return (

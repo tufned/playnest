@@ -11,7 +11,7 @@ interface BackButtonProps extends HTMLAttributes<HTMLDivElement> {
 const BackButtonContent = ({ label }: { label: BackButtonProps['label'] }) => {
   return (
     <div className='button-wrapper flex-center gap-0.5 py-1.5 pl-1 pr-3'>
-      <Image src={arrowIcon} alt='arrow' height={27} />
+      <Image src={arrowIcon} alt='arrow' height={27} width={27} />
       <span>{label}</span>
     </div>
   );

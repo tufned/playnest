@@ -3,9 +3,11 @@ export interface ResponseFail {
   message: string;
 }
 
-export interface ResponseSuccess<T = Record<string, unknown>> {
+export interface ResponseSuccess<T extends object> {
   success: true;
-  data?: T;
+  data: T;
 }
 
-export type IResponse = ResponseFail | ResponseSuccess;
+export type ResponseType<T extends object = Record<string, unknown>> =
+  | ResponseFail
+  | ResponseSuccess<T>;

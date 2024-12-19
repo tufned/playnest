@@ -1,6 +1,8 @@
 import { ResponseFail, ResponseSuccess } from '../types';
 
-export const success = <T = ResponseSuccess['data']>(response?: T): ResponseSuccess => {
+export const success = <T extends object = Record<string, unknown>>(
+  response?: T
+): ResponseSuccess<T> => {
   if (response)
     return {
       success: true,

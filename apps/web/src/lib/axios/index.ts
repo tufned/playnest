@@ -3,7 +3,8 @@ import envConfig from '~/config/env.config';
 import { responseErrorInterceptor, responseInterceptor } from '~/lib/axios/interceptors';
 
 const api = axios.create({
-  baseURL: envConfig.NEXT_PUBLIC_API_BASE_URL
+  baseURL: envConfig.NEXT_PUBLIC_API_BASE_URL,
+  withCredentials: true
 });
 
 api.interceptors.response.use(responseInterceptor, responseErrorInterceptor);

@@ -9,8 +9,14 @@ import PasswordVisibility from '~/components/auth/password-visibility/PasswordVi
 import { IUserLogin } from '@playnest/utils';
 import { defaultValues } from '~/app/(auth)/login/constants';
 import authService from '~/services/auth';
+import { setAccessToken } from '~/redux/api/auth';
+import routes from '~/constants/routes';
+import { useAppDispatch } from '~/hooks/useRedux';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [isPaswInputShown, setIsPaswInputShown] = useState(false);
 
   const {
@@ -21,9 +27,12 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<IUserLogin> = async (data) => {
     const response = await authService.login(data);
-    console.log(response);
-    // TODO: implement error message
-    // TODO: implement redirection and save jwt tokens
+
+    // TODO: implement snackbar error message
+    if (!response.success) return console.error(response.message);
+
+    dispatch(setAccessToken(response.data!.accessToken));
+    router.replace(routes.index);
   };
 
   return (

@@ -6,6 +6,8 @@ import { errors } from '../constants/errors.js';
 import TokenService from './TokenService.js';
 import UserMapper from '../mappers/UserMapper.js';
 import { ITokens } from '../types/auth.js';
+import { Response } from 'express';
+import { authConfig } from '../constants/auth.js';
 
 class AuthService {
   private readonly userService: UserService;
@@ -18,9 +20,12 @@ class AuthService {
     this.tokenService = new TokenService();
   }
 
-  async refreshAccessToken(refreshToken: string): Promise<ITokens> {
+  async refreshAccessToken(res: Response, refreshToken: string): Promise<ITokens> {
     const tokenPayload = this.tokenService.validateRefreshToken(refreshToken);
-    if (!tokenPayload) throw createError(400, errors.badRefreshToken);
+    if (!tokenPayload) {
+      res.clearCookie(authConfig.REFRESH_TOKEN);
+      throw createError(400, errors.badRefreshToken);
+    }
 
     const userDoc = await this.userService.getUserById(tokenPayload.id);
 

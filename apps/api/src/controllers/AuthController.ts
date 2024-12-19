@@ -19,7 +19,7 @@ class AuthController {
     const { refreshToken } = req.cookies;
     if (!refreshToken) throw createError(401, errors.refreshTokenNotRetrieved);
 
-    const tokens = await this.authService.refreshAccessToken(refreshToken);
+    const tokens = await this.authService.refreshAccessToken(res, refreshToken);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
     res.status(200).json(success({ accessToken: tokens.accessToken }));

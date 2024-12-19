@@ -8,7 +8,7 @@ interface InputPasswordVisibilityWrapperProps {
   visibilityToggle: () => void;
 }
 
-const iconHeight = 16;
+const iconSize = 16;
 
 const PasswordVisibility: FC<InputPasswordVisibilityWrapperProps> = ({
   isVisible,
@@ -20,9 +20,9 @@ const PasswordVisibility: FC<InputPasswordVisibilityWrapperProps> = ({
       onClick={visibilityToggle}
     >
       {isVisible ? (
-        <Image src={EyeOffIcon} height={iconHeight} alt='eye-off' />
+        <Image src={EyeOffIcon} height={iconSize} width={iconSize} alt='eye-off' />
       ) : (
-        <Image src={EyeIcon} height={iconHeight} alt='eye' />
+        <Image src={EyeIcon} height={iconSize} width={iconSize} alt='eye' />
       )}
       <span className='text-xs'>{isVisible ? 'Сховати' : 'Показати'} пароль</span>
     </div>
