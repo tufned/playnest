@@ -40,6 +40,11 @@ class AuthController {
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
     res.status(200).json(success({ accessToken: tokens.accessToken }));
   };
+
+  logout = async (_req: Request, res: Response) => {
+    res.clearCookie(authConfig.REFRESH_TOKEN);
+    res.status(200).json(success());
+  };
 }
 
 export default new AuthController();

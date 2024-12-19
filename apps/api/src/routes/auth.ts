@@ -6,6 +6,7 @@ const router: Router = Router();
 
 router.post('/login', asyncWrapper(AuthController.login));
 router.post('/signup', asyncWrapper(AuthController.signup));
-router.post('/refresh', asyncWrapper(AuthController.refreshAccessToken));
+router.get('/refresh', asyncWrapper(AuthController.refreshAccessToken));
+router.get('/logout', asyncWrapper(AuthController.logout));
 
 export default router;

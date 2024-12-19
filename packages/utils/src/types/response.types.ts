@@ -5,7 +5,7 @@ export interface ResponseFail {
 
 export interface ResponseSuccess<T extends object> {
   success: true;
-  data: T;
+  data?: T;
 }
 
 export type ResponseType<T extends object = Record<string, unknown>> =

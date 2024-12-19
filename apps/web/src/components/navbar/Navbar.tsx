@@ -14,12 +14,27 @@ import logInIcon from '~/assets/icons/log-in.svg';
 import gamepadIcon2 from '~/assets/icons/gaming-pad-2.svg';
 import dashboardIcon from '~/assets/icons/layout-alt.svg';
 import BrandLogo from '~/components/brand-logo/BrandLogo';
-import { useAppSelector } from '~/hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
+import authService from '~/services/auth';
+import { setAccessToken } from '~/redux/api/auth';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const isAuthorized = useAppSelector((state) => state.common.isAuthorized);
 
   // TODO: fetch user data
+
+  const handleLogout = async () => {
+    const response = await authService.logout();
+
+    // TODO: implement snackbar error message
+    if (!response.success) return console.error(response.message);
+
+    dispatch(setAccessToken(null));
+    router.replace(routes.index);
+  };
 
   return (
     <nav className='border-r border-primaryDimmed my-[35px] flex flex-col items-center'>
@@ -43,7 +58,7 @@ const Navbar = () => {
           {isAuthorized ? (
             <>
               <NavbarItem title='username' icon={userIcon} />
-              <NavbarItem title='Вийти' icon={logOutIcon} />
+              <NavbarItem title='Вийти' icon={logOutIcon} onClick={handleLogout} />
             </>
           ) : (
             <LinkNavbarItem route={routes.login} title='Увійти' icon={logInIcon} />
