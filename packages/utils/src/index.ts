@@ -1,2 +1,3 @@
-const abc: number = 28;
-console.log(abc);
+export * from './types/index.js';
+export * from './configs/index.js';
+export * from './utils/index.js';

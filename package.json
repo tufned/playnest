@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "start": "turbo start --filter=@playnest/web --filter=@playnest/api",
     "dev:web": "turbo dev --filter=@playnest/web --filter=@playnest/api --filter=@playnest/utils",
     "dev:mobile": "turbo dev --filter=@playnest/mobile --filter=@playnest/api --filter=@playnest/utils",
     "api:dev": "turbo dev --filter=@playnest/api",
