@@ -24,6 +24,8 @@ const Navbar = () => {
   const router = useRouter();
   const isAuthorized = useAppSelector((state) => state.common.isAuthorized);
 
+  const testVar = ''
+
   // TODO: fetch user data
 
   const handleLogout = async () => {
