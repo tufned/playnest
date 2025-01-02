@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "author": "Den Funderat <funderatdenis@gmail.com>",
   "license": "ISC",
