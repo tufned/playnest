@@ -30,7 +30,6 @@ const Navbar = () => {
     const response = await authService.logout();
 
     // TODO: implement snackbar error message
-
     if (!response.success) return console.error(response.message);
 
     dispatch(setAccessToken(null));
