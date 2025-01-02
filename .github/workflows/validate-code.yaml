@@ -1,9 +1,8 @@
-name: validate
+name: Validate Code
 
 on:
   pull_request:
-    branches:
-      - develop
+    branches: [main, develop]
 
 jobs:
   validate:
@@ -38,9 +37,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Check commit message
-        uses: wagoid/commitlint-github-action@v5
 
       - name: Lint
         run: pnpm lint

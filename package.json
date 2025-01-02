@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "test": "turbo test",
     "dev": "turbo dev",
     "start": "turbo start --filter=@playnest/web --filter=@playnest/api",
     "dev:web": "turbo dev --filter=@playnest/web --filter=@playnest/api --filter=@playnest/utils",

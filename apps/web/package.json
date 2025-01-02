@@ -6,7 +6,8 @@
     "dev": "next dev -p 3390",
     "build": "next build",
     "start": "next start -p 3390",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
