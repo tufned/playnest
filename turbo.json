@@ -1,7 +1,18 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalDependencies": [".env*"],
+  "globalEnv": [
+    "SERVER_PORT",
+    "FRONTEND_URL",
+    "DB_URI",
+    "DB_PASW",
+    "DB_NAME",
+    "JWT_ACCESS_SECRET",
+    "JWT_REFRESH_SECRET",
+    "JWT_ACCESS_EXPIRES_IN",
+    "JWT_REFRESH_EXPIRES_IN",
+    "COOKIE_DOMAIN"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -17,12 +28,7 @@
     },
     "test": {
       "dependsOn": ["build"],
-      "inputs": [
-        "src/**/*.tsx",
-        "src/**/*.ts",
-        "test/**/*.ts",
-        "test/**/*.tsx"
-      ]
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
     },
     "lint": {
       "dependsOn": ["^lint"]
