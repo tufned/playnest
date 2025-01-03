@@ -5,8 +5,6 @@
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "vercel-build": "echo \"Vercel Build\"",
     "start": "node dist/app.js",
     "dev": "nodemon",
     "lint": "eslint src",
