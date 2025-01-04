@@ -16,9 +16,12 @@ const config: Config = {
     '@playnest/utils': '<rootDir>/../packages/utils/src'
   },
   transform: {
-    '^.+.tsx?$': ['ts-jest', {
-      useESM: true
-    }]
+    '^.+.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true
+      }
+    ]
   },
   testRegex: '.*\\.(spec|test)\\.(t|j)s$'
 };

@@ -1,7 +1,7 @@
-import UserService from '../UserService';
-import User from '../../models/user';
-import { createError } from '../../utils/errorHelpers';
-import { errors } from '../../constants/errors';
+import UserService from '../UserService.js';
+import User from '../../models/user.js';
+import { createError } from '../../utils/errorHelpers.js';
+import { errors } from '../../constants/errors.js';
 import { IUserSignup } from '@playnest/utils';
 
 jest.mock('../../models/user', () => ({
