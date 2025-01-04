@@ -16,13 +16,19 @@
     "src/**/*.tsx",
     ".next/types/**/*.ts",
     "eslint.config.mjs",
-    "prettier.config.mjs"
+    "prettier.config.mjs",
+
+    // will be excluded by next config
+    "src/**/*.test.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.js",
+    "src/**/*.spec.jsx"
   ],
   "exclude": [
-    "node_modules",
-    "src/**/__tests__/**",
-    "src/**/tests/**",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts"
+    "node_modules"
+    //    "src/**/__tests__/**",
+    //    "src/**/tests/**",
+    //    "src/**/*.test.ts",
+    //    "src/**/*.spec.ts"
   ]
 }
