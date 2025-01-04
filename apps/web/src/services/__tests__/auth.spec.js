@@ -4,7 +4,7 @@ import api from '~/lib/axios';
 import authService from '../auth';
 import URLs from '~/constants/requests';
 import { errors } from '~/constants/errors';
-console.log('THIS IS TEST FILE');
+
 let mockSuccessResponse;
 
 vi.mock('~/lib/axios', () => ({
