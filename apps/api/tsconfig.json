@@ -12,10 +12,10 @@
   "include": ["src/**/*", "src/**/*.ts", "eslint.config.js", "prettier.config.js"],
   "exclude": [
     "node_modules",
-    "dist",
-    "src/**/__tests__/**",
-    "src/**/tests/**",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts"
+    "dist"
+    //    "src/**/__tests__/**",
+    //    "src/**/tests/**",
+    //    "src/**/*.test.ts",
+    //    "src/**/*.spec.ts"
   ]
 }

@@ -10,6 +10,7 @@ export default [
       '.turbo/*',
       '.next/*',
       '*.config.mjs',
+      '*.config.mts',
       '*.config.ts'
     ]
   },
