@@ -3,10 +3,6 @@ export default {
     "pnpm format",
     "turbo lint --filter=@playnest/api --",
   ],
-  "apps/mobile/**/*.{js,jsx,ts,tsx}": [
-    "pnpm format",
-    "turbo lint --filter=@playnest/mobile --",
-  ],
   "apps/web/**/*.{js,jsx,ts,tsx}": [
     "pnpm format",
     "turbo lint --filter=@playnest/web --",

@@ -5,7 +5,7 @@
   "license": "MIT",
   "files": [
     "base.json",
-    "react-native-library.json",
+    "next-library.json",
     "node-library.json",
     "shared-library.json"
   ]

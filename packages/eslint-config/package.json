@@ -5,7 +5,6 @@
   "exports": {
     "./base": "./base.js",
     "./node": "./node.js",
-    "./react-native": "./react-native.js",
     "./next": "./next.js"
   },
   "peerDependencies": {

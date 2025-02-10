@@ -33,7 +33,7 @@ export default [
   {
     rules: {
       'prettier/prettier': ['warn', prettierOptions],
-      quotes: ['error', 'single'],
+      quotes: ['error', 'double'],
       semi: ['error', 'always'],
       'prefer-const': 'off',
       'eol-last': ['error', 'always'],
