@@ -10,7 +10,7 @@
     "api:dev": "turbo dev --filter=@playnest/api",
     "web:dev": "turbo dev --filter=@playnest/web",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
     "prepare": "husky install"
   },
   "packageManager": "pnpm@9.0.0",

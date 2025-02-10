@@ -1,7 +1,7 @@
-import { Express } from 'express';
-import envConfig from '../configs/env.config.js';
-import init from './app.js';
-import initDatabase from './database.js';
+import { Express } from "express";
+import envConfig from "../configs/env.config.js";
+import init from "./app.js";
+import initDatabase from "./database.js";
 
 const { SERVER_PORT } = envConfig;
 

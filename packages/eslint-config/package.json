@@ -5,7 +5,8 @@
   "exports": {
     "./base": "./base.js",
     "./node": "./node.js",
-    "./next": "./next.js"
+    "./next": "./next.js",
+    "./react": "./react.js"
   },
   "peerDependencies": {
     "eslint": "^8.57.0",
@@ -22,7 +23,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-native": "^4.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
     "@next/eslint-plugin-next": "15.0.3",
     "globals": "13.24.0",
     "typescript-eslint": "^8.14.0"

@@ -6,13 +6,13 @@ export interface IUserSignup {
 
 export interface UserModel extends IUserSignup {
   _id: string;
-  role: 'user' | 'admin';
+  role: "user" | "admin";
   lastChangedAt: Date;
   createdAt: Date;
 }
 
-export interface IUserResponse extends Omit<UserModel, 'password' | '_id'> {
-  id: UserModel['_id'];
+export interface IUserResponse extends Omit<UserModel, "password" | "_id"> {
+  id: UserModel["_id"];
 }
 
 export interface IUserLogin {
@@ -21,6 +21,6 @@ export interface IUserLogin {
 }
 
 export interface IUserJwtPayload {
-  id: UserModel['_id'];
-  role: UserModel['role'];
+  id: UserModel["_id"];
+  role: UserModel["role"];
 }

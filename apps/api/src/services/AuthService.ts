@@ -1,13 +1,13 @@
-import { IUserSignup, IUserLogin } from '@playnest/utils';
-import UserService from './UserService.js';
-import { compareHash } from '../lib/bcrypt.js';
-import { createError } from '../utils/errorHelpers.js';
-import { errors } from '../constants/errors.js';
-import TokenService from './TokenService.js';
-import UserMapper from '../mappers/UserMapper.js';
-import { ITokens } from '../types/auth.js';
-import { Response } from 'express';
-import { authConfig } from '../constants/auth.js';
+import { IUserSignup, IUserLogin } from "@playnest/utils";
+import UserService from "./UserService.js";
+import { compareHash } from "../lib/bcrypt.js";
+import { createError } from "../utils/errorHelpers.js";
+import { errors } from "../constants/errors.js";
+import TokenService from "./TokenService.js";
+import UserMapper from "../mappers/UserMapper.js";
+import { ITokens } from "../types/auth.js";
+import { Response } from "express";
+import { authConfig } from "../constants/auth.js";
 
 class AuthService {
   private readonly userService: UserService;

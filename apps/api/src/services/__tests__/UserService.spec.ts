@@ -1,16 +1,16 @@
-import UserService from '../UserService.js';
-import User from '../../models/user.js';
-import { createError } from '../../utils/errorHelpers.js';
-import { errors } from '../../constants/errors.js';
-import { IUserSignup } from '@playnest/utils';
+import UserService from "../UserService.js";
+import User from "../../models/user.js";
+import { createError } from "../../utils/errorHelpers.js";
+import { errors } from "../../constants/errors.js";
+import { IUserSignup } from "@playnest/utils";
 
-jest.mock('../../models/user', () => ({
+jest.mock("../../models/user", () => ({
   findById: jest.fn(),
   findOne: jest.fn(),
   create: jest.fn()
 }));
 
-describe('UserService', () => {
+describe("UserService", () => {
   let userService: UserService;
 
   beforeEach(() => {
@@ -18,63 +18,63 @@ describe('UserService', () => {
     jest.clearAllMocks();
   });
 
-  describe('getUserById', () => {
-    it('should return a user by id', async () => {
-      const mockUser = { id: '1', email: 'test@test.com' };
+  describe("getUserById", () => {
+    it("should return a user by id", async () => {
+      const mockUser = { id: "1", email: "test@test.com" };
       (User.findById as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(mockUser)
       });
 
-      const result = await userService.getUserById('1');
+      const result = await userService.getUserById("1");
 
-      expect(User.findById).toHaveBeenCalledWith('1');
+      expect(User.findById).toHaveBeenCalledWith("1");
       expect(result).toEqual(mockUser);
     });
 
-    it('should return null if user not found', async () => {
+    it("should return null if user not found", async () => {
       (User.findById as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(null)
       });
 
-      const result = await userService.getUserById('1');
+      const result = await userService.getUserById("1");
 
       expect(result).toBeNull();
     });
   });
 
-  describe('getUserByField', () => {
-    it('should return a user by field', async () => {
-      const mockUser = { email: 'test@test.com' };
+  describe("getUserByField", () => {
+    it("should return a user by field", async () => {
+      const mockUser = { email: "test@test.com" };
       (User.findOne as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(mockUser)
       });
 
-      const result = await userService.getUserByField({ email: 'test@test.com' });
+      const result = await userService.getUserByField({ email: "test@test.com" });
 
-      expect(User.findOne).toHaveBeenCalledWith({ email: 'test@test.com' });
+      expect(User.findOne).toHaveBeenCalledWith({ email: "test@test.com" });
       expect(result).toEqual(mockUser);
     });
 
-    it('should return null if user not found', async () => {
+    it("should return null if user not found", async () => {
       (User.findOne as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(null)
       });
 
-      const result = await userService.getUserByField({ email: 'test@test.com' });
+      const result = await userService.getUserByField({ email: "test@test.com" });
 
       expect(result).toBeNull();
     });
   });
 
-  describe('createUser', () => {
+  describe("createUser", () => {
     const mockUserData: IUserSignup = {
-      email: 'test@test.com',
-      nickname: 'testuser',
-      password: 'password123'
+      email: "test@test.com",
+      nickname: "testuser",
+      password: "password123"
     };
 
-    it('should create a new user', async () => {
-      const mockCreatedUser = { ...mockUserData, id: '1' };
+    it("should create a new user", async () => {
+      const mockCreatedUser = { ...mockUserData, id: "1" };
 
       (User.findOne as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(null)
@@ -87,7 +87,7 @@ describe('UserService', () => {
       expect(result).toEqual(mockCreatedUser);
     });
 
-    it('should throw error if email is already registered', async () => {
+    it("should throw error if email is already registered", async () => {
       (User.findOne as jest.Mock)
         .mockReturnValueOnce({
           exec: jest.fn().mockResolvedValue({ email: mockUserData.email })
@@ -101,7 +101,7 @@ describe('UserService', () => {
       );
     });
 
-    it('should throw error if nickname is already taken', async () => {
+    it("should throw error if nickname is already taken", async () => {
       (User.findOne as jest.Mock)
         .mockReturnValueOnce({
           exec: jest.fn().mockResolvedValue(null)

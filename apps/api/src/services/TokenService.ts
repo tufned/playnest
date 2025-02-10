@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import envConfig from '../configs/env.config.js';
-import { createError } from '../utils/errorHelpers.js';
-import { IUserJwtPayload } from '@playnest/utils';
-import { ITokens } from '../types/auth.js';
+import jwt from "jsonwebtoken";
+import envConfig from "../configs/env.config.js";
+import { createError } from "../utils/errorHelpers.js";
+import { IUserJwtPayload } from "@playnest/utils";
+import { ITokens } from "../types/auth.js";
 
 class TokenService {
   generateTokens(payload: IUserJwtPayload): ITokens {

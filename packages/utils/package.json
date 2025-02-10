@@ -9,7 +9,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint src",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "echo \"vitest\""
   },
   "peerDependencies": {
     "eslint": "^8.57.0",

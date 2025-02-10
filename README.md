@@ -51,7 +51,7 @@ pnpm dev
 To develop web (omits mobile):
 
 ```bash
-pnpm dev:web
+pnpm dev:shop
 ```
 
 To develop mobile (omits web):

@@ -1,5 +1,5 @@
-import { EnhancedError } from '../types/common.types.js';
-import { errors } from '../constants/errors.js';
+import { EnhancedError } from "../types/common.types.js";
+import { errors } from "../constants/errors.js";
 
 export const createError = (status: number, message: string): EnhancedError => {
   const error = new Error(message) as EnhancedError;

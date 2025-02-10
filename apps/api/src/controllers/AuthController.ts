@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
-import { success } from '@playnest/utils';
-import AuthMapper from '../mappers/AuthMapper.js';
-import AuthService from '../services/AuthService.js';
-import { authConfig, COOKIE_OPTIONS } from '../constants/auth.js';
-import { createError } from '../utils/errorHelpers.js';
-import { errors } from '../constants/errors.js';
+import { Request, Response } from "express";
+import { success } from "@playnest/utils";
+import AuthMapper from "../mappers/AuthMapper.js";
+import AuthService from "../services/AuthService.js";
+import { authConfig, COOKIE_OPTIONS } from "../constants/auth.js";
+import { createError } from "../utils/errorHelpers.js";
+import { errors } from "../constants/errors.js";
 
 class AuthController {
   private readonly authService: AuthService;

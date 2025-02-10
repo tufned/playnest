@@ -7,6 +7,7 @@
     "base.json",
     "next-library.json",
     "node-library.json",
-    "shared-library.json"
+    "shared-library.json",
+    "react-library.json"
   ]
 }

@@ -1,4 +1,4 @@
-import envConfig from './env.config.js';
+import envConfig from "./env.config.js";
 
 const config = {
   HASH_SALT_ROUNDS: 10,

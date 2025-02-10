@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import { fail } from '@playnest/utils';
-import { EnhancedError } from '../types/common.types.js';
+import { NextFunction, Request, Response } from "express";
+import { fail } from "@playnest/utils";
+import { EnhancedError } from "../types/common.types.js";
 
 const errorMiddleware = (
   err: EnhancedError,

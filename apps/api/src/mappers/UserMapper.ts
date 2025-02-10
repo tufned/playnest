@@ -1,5 +1,5 @@
-import { HydratedDocument } from 'mongoose';
-import { IUserJwtPayload, IUserResponse, UserModel } from '@playnest/utils';
+import { HydratedDocument } from "mongoose";
+import { IUserJwtPayload, IUserResponse, UserModel } from "@playnest/utils";
 
 class UserMapper {
   toResponse(user: HydratedDocument<UserModel>): IUserResponse {

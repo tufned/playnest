@@ -1,7 +1,7 @@
-import { IUserSignup, UserModel } from '@playnest/utils';
-import User from '../models/user.js';
-import { createError } from '../utils/errorHelpers.js';
-import { errors } from '../constants/errors.js';
+import { IUserSignup, UserModel } from "@playnest/utils";
+import User from "../models/user.js";
+import { createError } from "../utils/errorHelpers.js";
+import { errors } from "../constants/errors.js";
 
 class UserService {
   async getUserById(id: string) {

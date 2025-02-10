@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
-import { UserModel } from '@playnest/utils';
-import { authConfig } from '@playnest/utils';
-import { schemaErrors } from '../constants/errors.js';
+import mongoose from "mongoose";
+import { UserModel } from "@playnest/utils";
+import { authConfig } from "@playnest/utils";
+import { schemaErrors } from "../constants/errors.js";
 
 const userSchema = new mongoose.Schema<UserModel>({
   nickname: {
     type: String,
-    required: [true, schemaErrors.required('nickname')],
+    required: [true, schemaErrors.required("nickname")],
     unique: true,
     minLength: [
       authConfig.nickname.minLength,
@@ -19,29 +19,29 @@ const userSchema = new mongoose.Schema<UserModel>({
   },
   password: {
     type: String,
-    required: [true, schemaErrors.required('password')]
+    required: [true, schemaErrors.required("password")]
   },
   email: {
     type: String,
-    required: [true, schemaErrors.required('email')],
+    required: [true, schemaErrors.required("email")],
     unique: true,
     minLength: [
       authConfig.email.minLength,
       schemaErrors.minLength(authConfig.email.minLength)
     ],
     validate: {
-      validator: (val: string) => val.includes('@'),
+      validator: (val: string) => val.includes("@"),
       message: schemaErrors.emailSymbol
     }
   },
   role: {
     type: String,
     enum: {
-      values: ['user', 'admin'],
-      message: schemaErrors.enum('role', ['user', 'admin'])
+      values: ["user", "admin"],
+      message: schemaErrors.enum("role", ["user", "admin"])
     },
-    required: [true, schemaErrors.required('role')],
-    default: 'user'
+    required: [true, schemaErrors.required("role")],
+    default: "user"
   },
   lastChangedAt: {
     type: Date,
@@ -49,6 +49,6 @@ const userSchema = new mongoose.Schema<UserModel>({
   }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

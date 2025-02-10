@@ -5,7 +5,7 @@ export default {
   ],
   "apps/web/**/*.{js,jsx,ts,tsx}": [
     "pnpm format",
-    "turbo lint --filter=@playnest/web --",
+    "turbo lint --filter=@playnest/shop --",
   ],
   "packages/utils/src/**/*.{js,ts}": [
     "pnpm format",
