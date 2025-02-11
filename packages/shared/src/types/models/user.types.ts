@@ -1,3 +1,8 @@
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
 export interface IUserSignup {
   nickname: string;
   password: string;
@@ -13,11 +18,6 @@ export interface UserModel extends IUserSignup {
 
 export interface IUserResponse extends Omit<UserModel, "password" | "_id"> {
   id: UserModel["_id"];
-}
-
-export interface IUserLogin {
-  email: string;
-  password: string;
 }
 
 export interface IUserJwtPayload {

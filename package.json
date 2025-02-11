@@ -5,10 +5,9 @@
     "build": "turbo build",
     "test": "turbo test",
     "dev": "turbo dev",
-    "start": "turbo start --filter=@playnest/web --filter=@playnest/api",
-    "dev:web": "turbo dev --filter=@playnest/web --filter=@playnest/api --filter=@playnest/utils",
-    "api:dev": "turbo dev --filter=@playnest/api",
-    "web:dev": "turbo dev --filter=@playnest/web",
+    "start": "turbo start --filter=@playnest/shop --filter=@playnest/api --filter=@playnest/admin",
+    "dev:shop": "turbo dev --filter=@playnest/shop --filter=@playnest/api --filter=@playnest/shared --filter=@playnest/web",
+    "dev:admin": "turbo dev --filter=@playnest/admin --filter=@playnest/api --filter=@playnest/shared --filter=@playnest/web",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
     "prepare": "husky install"

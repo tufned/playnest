@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "@playnest/utils": ["../../packages/utils/src/index.bundler.ts"],
-      "@playnest/utils/*": ["../../packages/utils/src/*"]
+      "~/*": ["./src/*"]
     },
     "allowJs": true,
     "noEmit": true
@@ -22,5 +20,6 @@
     "**/*.spec.js",
     "**/*.test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "references": [{ "path": "../../packages/shared" }]
 }

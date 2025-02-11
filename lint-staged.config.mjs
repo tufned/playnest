@@ -9,7 +9,7 @@ export default {
   ],
   "packages/utils/src/**/*.{js,ts}": [
     "pnpm format",
-    "turbo lint --filter=@playnest/utils --",
+    "turbo lint --filter=@playnest/shared --",
   ],
   "**/*.{json,md,config.js,config.mjs,yaml,yml}": ["prettier --write"],
 };

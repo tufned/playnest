@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { IUserJwtPayload } from "@playnest/utils";
+import { IUserJwtPayload } from "@playnest/shared/types/models/user.types";
 
 export interface EnhancedError extends Error {
   status: number;

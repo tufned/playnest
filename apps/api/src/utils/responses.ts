@@ -1,4 +1,4 @@
-import { ResponseFail, ResponseSuccess } from "../types";
+import { ResponseFail, ResponseSuccess } from "@playnest/shared/types/response.types";
 
 export const success = <T extends object = Record<string, unknown>>(
   response?: T

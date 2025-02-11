@@ -13,7 +13,7 @@ const config: Config = {
   testEnvironment: "node",
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
-    "@playnest/utils": "<rootDir>/../packages/utils/src"
+    "@playnest/utils": "<rootDir>/../packages/shared/src"
   },
   transform: {
     "^.+.tsx?$": [

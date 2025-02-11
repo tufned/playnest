@@ -28,6 +28,9 @@ importers:
 
   apps/admin:
     dependencies:
+      "@playnest/shared":
+        specifier: workspace:*
+        version: link:../../packages/shared
       "@playnest/web":
         specifier: workspace:*
         version: link:../../packages/web
@@ -77,9 +80,9 @@ importers:
 
   apps/api:
     dependencies:
-      "@playnest/utils":
+      "@playnest/shared":
         specifier: workspace:*
-        version: link:../../packages/utils
+        version: link:../../packages/shared
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -159,6 +162,9 @@ importers:
 
   apps/shop:
     dependencies:
+      "@playnest/shared":
+        specifier: workspace:*
+        version: link:../../packages/shared
       "@playnest/web":
         specifier: workspace:*
         version: link:../../packages/web
@@ -297,9 +303,7 @@ importers:
         specifier: ^3.2.5
         version: 3.4.1
 
-  packages/typescript-config: {}
-
-  packages/utils:
+  packages/shared:
     dependencies:
       eslint:
         specifier: ^8.57.0
@@ -323,6 +327,8 @@ importers:
       "@types/node":
         specifier: ^22.9.0
         version: 22.10.1
+
+  packages/typescript-config: {}
 
   packages/web:
     devDependencies:

@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { fail, success } from "@playnest/utils";
 import api from "~/lib/axios";
 import authService from "../auth";
 import URLs from "~/constants/requests";

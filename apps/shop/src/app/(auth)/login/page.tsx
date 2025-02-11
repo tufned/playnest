@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import InputEmail from "~/components/auth/input-email/InputEmail";
 import InputPassword from "~/components/auth/input-password/InputPassword";
 import PasswordVisibility from "~/components/auth/password-visibility/PasswordVisibility";
-import { IUserLogin } from "@playnest/utils";
+import { IUserLogin } from "@playnest/shared/types/models/user.types";
 import { defaultValues } from "~/app/(auth)/login/constants";
 import authService from "~/services/auth";
 import { setAccessToken } from "~/redux/api/auth";

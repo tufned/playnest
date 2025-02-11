@@ -1,4 +1,4 @@
-import { IUserSignup, IUserLogin } from "@playnest/utils";
+import { IUserSignup, IUserLogin } from "@playnest/shared/types/models/user.types";
 import UserService from "./UserService.js";
 import { compareHash } from "../lib/bcrypt.js";
 import { createError } from "../utils/errorHelpers.js";

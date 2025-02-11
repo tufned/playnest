@@ -1,4 +1,4 @@
-import { IUserSignup, UserModel } from "@playnest/utils";
+import { IUserSignup, UserModel } from "@playnest/shared/types/models/user.types";
 import User from "../models/user.js";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";

@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "~/components/input/Input";
 import { authErrors } from "~/constants/errors";
-import { authConfig } from "@playnest/utils";
+import { authConfig } from "@playnest/shared/configs/auth.config";
 import { FieldError, FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 interface InputPasswordProps<T extends FieldValues> {

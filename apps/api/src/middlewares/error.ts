@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { fail } from "@playnest/utils";
+import { fail } from "../utils/responses.js";
 import { EnhancedError } from "../types/common.types.js";
 
 const errorMiddleware = (

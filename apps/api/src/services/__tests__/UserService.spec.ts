@@ -2,7 +2,7 @@ import UserService from "../UserService.js";
 import User from "../../models/user.js";
 import { createError } from "../../utils/errorHelpers.js";
 import { errors } from "../../constants/errors.js";
-import { IUserSignup } from "@playnest/utils";
+import { IUserSignup } from "@playnest/shared/types/models/user.types";
 
 jest.mock("../../models/user", () => ({
   findById: jest.fn(),

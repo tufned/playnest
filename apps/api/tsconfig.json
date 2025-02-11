@@ -3,11 +3,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "@playnest/utils": ["../../packages/utils/src"],
-      "@playnest/utils/*": ["../../packages/utils/src/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src/**/*.ts"],
   "exclude": [
@@ -21,5 +17,6 @@
     "**/*.spec.js",
     "**/*.test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "references": [{ "path": "../../packages/shared" }]
 }

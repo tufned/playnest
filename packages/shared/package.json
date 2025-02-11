@@ -1,9 +1,17 @@
 {
-  "name": "@playnest/utils",
+  "name": "@playnest/shared",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": {
+    "./types/*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/types/*.js"
+    },
+    "./configs/*": {
+      "types": "./dist/configs/*.d.ts",
+      "import": "./dist/configs/*.js"
+    }
+  },
   "type": "module",
   "scripts": {
     "build": "tsc",

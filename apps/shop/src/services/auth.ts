@@ -1,8 +1,12 @@
-import { fail, ResponseType, IUserLogin, IUserSignup, success } from "@playnest/utils";
+import { IUserLogin, IUserSignup } from "@playnest/shared/types/models/user.types";
+import { ResponseType } from "@playnest/shared/types/response.types";
 import api from "~/lib/axios";
 import URLs from "~/constants/requests";
 import { errors } from "~/constants/errors";
 import { IAccessTokenResponse } from "~/types";
+
+// TODO: refactor authService
+//   methods should return prepared data
 
 const authService = {
   signup: async (formData: IUserSignup): Promise<ResponseType<IAccessTokenResponse>> => {
@@ -12,9 +16,15 @@ const authService = {
         formData
       );
       if (!response.success) throw new Error(response.message);
-      return success(response.data);
+      return {
+        success: true,
+        data: response.data
+      };
     } catch (err) {
-      return fail(err instanceof Error ? err.message : errors.badRequest);
+      return {
+        success: false,
+        message: err instanceof Error ? err.message : errors.badRequest
+      };
     }
   },
   login: async (formData: IUserLogin): Promise<ResponseType<IAccessTokenResponse>> => {
@@ -24,9 +34,15 @@ const authService = {
         formData
       );
       if (!response.success) throw new Error(response.message);
-      return success(response.data);
+      return {
+        success: true,
+        data: response.data
+      };
     } catch (err) {
-      return fail(err instanceof Error ? err.message : errors.badRequest);
+      return {
+        success: false,
+        message: err instanceof Error ? err.message : errors.badRequest
+      };
     }
   },
   refreshAccessToken: async (): Promise<ResponseType<IAccessTokenResponse>> => {
@@ -35,9 +51,15 @@ const authService = {
         URLs.auth.refresh
       );
       if (!response.success) throw new Error(response.message);
-      return success(response.data);
+      return {
+        success: true,
+        data: response.data
+      };
     } catch (err) {
-      return fail(err instanceof Error ? err.message : errors.badRequest);
+      return {
+        success: false,
+        message: err instanceof Error ? err.message : errors.badRequest
+      };
     }
   },
   logout: async (): Promise<ResponseType> => {
@@ -46,9 +68,14 @@ const authService = {
         URLs.auth.logout
       );
       if (!response.success) throw new Error(response.message);
-      return success();
+      return {
+        success: true
+      };
     } catch (err) {
-      return fail(err instanceof Error ? err.message : errors.badRequest);
+      return {
+        success: false,
+        message: err instanceof Error ? err.message : errors.badRequest
+      };
     }
   }
 };

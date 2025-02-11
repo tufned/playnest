@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { UserModel } from "@playnest/utils";
-import { authConfig } from "@playnest/utils";
+import { UserModel } from "@playnest/shared/types/models/user.types";
+import { authConfig } from "@playnest/shared/configs/auth.config";
 import { schemaErrors } from "../constants/errors.js";
 
 const userSchema = new mongoose.Schema<UserModel>({

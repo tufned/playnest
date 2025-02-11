@@ -14,7 +14,7 @@
   "author": "Den Funderat <funderatdenis@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@playnest/utils": "workspace:*",
+    "@playnest/shared": "workspace:*",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

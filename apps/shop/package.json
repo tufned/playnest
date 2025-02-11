@@ -17,6 +17,7 @@
     "next": "15.1.6",
     "react-hook-form": "^7.53.2",
     "react-redux": "^9.2.0",
+    "@playnest/shared": "workspace:*",
     "@playnest/web": "workspace:*"
   },
   "devDependencies": {

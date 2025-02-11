@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import envConfig from "../configs/env.config.js";
 import { createError } from "../utils/errorHelpers.js";
-import { IUserJwtPayload } from "@playnest/utils";
+import { IUserJwtPayload } from "@playnest/shared/types/models/user.types";
 import { ITokens } from "../types/auth.js";
 
 class TokenService {

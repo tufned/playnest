@@ -4,7 +4,7 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "incremental": false,
+    "incremental": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noUncheckedIndexedAccess": true,
@@ -13,6 +13,7 @@
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "composite": true
   }
 }
