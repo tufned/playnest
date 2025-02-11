@@ -8,8 +8,19 @@ import tseslintParser from "@typescript-eslint/parser";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { ignores: ["dist/*", "node_modules/*", ".turbo/*", ".next/*"] },
-  { files: ["**/*.{ts}"] },
+  {
+    ignores: [
+      "dist/*",
+      "node_modules/*",
+      ".turbo/*",
+      ".next/*",
+      "*.config.mjs",
+      "*.config.js",
+      "*.config.mts",
+      "*.config.ts"
+    ]
+  },
+  { files: ["**/*.{ts,tsx}"] },
   {
     languageOptions: {
       parser: tseslintParser,
@@ -20,6 +31,14 @@ export default [
       },
       globals: { ...globals.browser, ...globals.node },
     },
+  },
+  {
+    files: ["**/*.{js,jsx}", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        project: null
+      }
+    }
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,

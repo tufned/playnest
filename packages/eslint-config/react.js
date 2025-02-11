@@ -8,7 +8,6 @@ import reactRules from "./react-rules.js";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default tseslint.config(...baseConfig, {
-  files: ["**/*.{js,jsx,ts,tsx}"],
   languageOptions: {
     globals: globals.browser,
     parserOptions: {

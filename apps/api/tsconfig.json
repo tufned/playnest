@@ -9,13 +9,17 @@
       "@playnest/utils/*": ["../../packages/utils/src/*"]
     }
   },
-  "include": ["src/**/*", "src/**/*.ts", "eslint.config.js", "prettier.config.js"],
+  "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules",
-    "dist"
-    //    "src/**/__tests__/**",
-    //    "src/**/tests/**",
-    //    "src/**/*.test.ts",
-    //    "src/**/*.spec.ts"
+    ".turbo",
+    "dist",
+    "coverage",
+    "src/**/__tests__/**/*",
+    "**/tests/**/*",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/*.test.ts",
+    "**/*.spec.ts"
   ]
 }
