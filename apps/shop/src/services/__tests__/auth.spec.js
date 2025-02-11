@@ -37,7 +37,10 @@ describe("authService", () => {
       const result = await authService.signup(mockSignupData);
 
       expect(api.post).toHaveBeenCalledWith(URLs.auth.signup, mockSignupData);
-      expect(result).toEqual(success(mockSuccessResponse.data));
+      expect(result).toEqual({
+        success: true,
+        data: mockSuccessResponse.data
+      });
     });
 
     it("should return an error on failed registration", async () => {
@@ -46,7 +49,10 @@ describe("authService", () => {
 
       const result = await authService.signup(mockSignupData);
 
-      expect(result).toEqual(fail(errorMessage));
+      expect(result).toEqual({
+        success: false,
+        message: errorMessage
+      });
     });
 
     it("should return general error on unexpected response", async () => {
@@ -54,7 +60,10 @@ describe("authService", () => {
 
       const result = await authService.signup(mockSignupData);
 
-      expect(result).toEqual(fail(errors.badRequest));
+      expect(result).toEqual({
+        success: false,
+        message: errors.badRequest
+      });
     });
   });
 
@@ -70,7 +79,10 @@ describe("authService", () => {
       const result = await authService.login(mockLoginData);
 
       expect(api.post).toHaveBeenCalledWith(URLs.auth.login, mockLoginData);
-      expect(result).toEqual(success(mockSuccessResponse.data));
+      expect(result).toEqual({
+        success: true,
+        data: mockSuccessResponse.data
+      });
     });
 
     it("should return an error on failed authentication", async () => {
@@ -79,7 +91,10 @@ describe("authService", () => {
 
       const result = await authService.login(mockLoginData);
 
-      expect(result).toEqual(fail(errorMessage));
+      expect(result).toEqual({
+        success: false,
+        message: errorMessage
+      });
     });
   });
 
@@ -90,7 +105,10 @@ describe("authService", () => {
       const result = await authService.refreshAccessToken();
 
       expect(api.get).toHaveBeenCalledWith(URLs.auth.refresh);
-      expect(result).toEqual(success(mockSuccessResponse.data));
+      expect(result).toEqual({
+        success: true,
+        data: mockSuccessResponse.data
+      });
     });
 
     it("should return an error on failed token refresh", async () => {
@@ -99,7 +117,10 @@ describe("authService", () => {
 
       const result = await authService.refreshAccessToken();
 
-      expect(result).toEqual(fail(errorMessage));
+      expect(result).toEqual({
+        success: false,
+        message: errorMessage
+      });
     });
   });
 
@@ -114,7 +135,9 @@ describe("authService", () => {
       const result = await authService.logout();
 
       expect(api.get).toHaveBeenCalledWith(URLs.auth.logout);
-      expect(result).toEqual(success());
+      expect(result).toEqual({
+        success: true
+      });
     });
 
     it("should return an error on failed logout", async () => {
@@ -123,7 +146,10 @@ describe("authService", () => {
 
       const result = await authService.logout();
 
-      expect(result).toEqual(fail(errorMessage));
+      expect(result).toEqual({
+        success: false,
+        message: errorMessage
+      });
     });
 
     it("should return general error on unexpected error", async () => {
@@ -131,7 +157,10 @@ describe("authService", () => {
 
       const result = await authService.logout();
 
-      expect(result).toEqual(fail(errors.badRequest));
+      expect(result).toEqual({
+        success: false,
+        message: errors.badRequest
+      });
     });
   });
 });

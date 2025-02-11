@@ -1,3 +1,3 @@
-import reactConfig from "@playnest/eslint-config/react";
+import { reactConfig } from "@playnest/configs/eslint";
 
-export default [...reactConfig];
+export default reactConfig;

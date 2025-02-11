@@ -1,5 +1,5 @@
 import globals from "globals";
-import baseConfig from "@playnest/eslint-config/base";
+import baseConfig from "./base.js";
 import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */

@@ -13,9 +13,7 @@
   "author": "Den Funderat <funderatdenis@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@playnest/prettier-config": "workspace:*",
-    "@playnest/eslint-config": "workspace:*",
-    "@playnest/typescript-config": "workspace:*",
+    "@playnest/configs": "workspace:*",
     "@types/react": "^19",
     "@types/react-dom": "^19"
   }

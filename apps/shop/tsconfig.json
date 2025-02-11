@@ -1,5 +1,5 @@
 {
-  "extends": ["@playnest/typescript-config/next-library.json"],
+  "extends": "@playnest/configs/typescript/next.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -25,9 +25,7 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@playnest/prettier-config": "workspace:*",
-    "@playnest/eslint-config": "workspace:*",
-    "@playnest/typescript-config": "workspace:*",
+    "@playnest/configs": "workspace:*",
     "@types/node": "^22.9.0"
   },
   "keywords": [],

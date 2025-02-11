@@ -41,15 +41,9 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
     devDependencies:
-      "@playnest/eslint-config":
+      "@playnest/configs":
         specifier: workspace:*
-        version: link:../../packages/eslint-config
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../../packages/prettier-config
-      "@playnest/typescript-config":
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../packages/configs
       "@types/react":
         specifier: ^19.0.8
         version: 19.0.8
@@ -108,15 +102,9 @@ importers:
         specifier: ^8.8.3
         version: 8.8.3
     devDependencies:
-      "@playnest/eslint-config":
+      "@playnest/configs":
         specifier: workspace:*
-        version: link:../../packages/eslint-config
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../../packages/prettier-config
-      "@playnest/typescript-config":
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../packages/configs
       "@types/bcrypt":
         specifier: ^5.0.2
         version: 5.0.2
@@ -190,15 +178,9 @@ importers:
         specifier: ^9.2.0
         version: 9.2.0(@types/react@19.0.8)(react@19.0.0)(redux@5.0.1)
     devDependencies:
-      "@playnest/eslint-config":
+      "@playnest/configs":
         specifier: workspace:*
-        version: link:../../packages/eslint-config
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../../packages/prettier-config
-      "@playnest/typescript-config":
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../packages/configs
       "@testing-library/dom":
         specifier: ^10.4.0
         version: 10.4.0
@@ -245,7 +227,7 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.1)(jsdom@25.0.1)(lightningcss@1.27.0)(sass@1.81.0)(terser@5.36.0)
 
-  packages/eslint-config:
+  packages/configs:
     dependencies:
       eslint:
         specifier: ^8.57.0
@@ -263,9 +245,6 @@ importers:
       "@next/eslint-plugin-next":
         specifier: 15.0.3
         version: 15.0.3
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../prettier-config
       "@typescript-eslint/eslint-plugin":
         specifier: ^7.1.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
@@ -297,12 +276,6 @@ importers:
         specifier: ^8.14.0
         version: 8.16.0(eslint@8.57.1)(typescript@5.5.4)
 
-  packages/prettier-config:
-    dependencies:
-      prettier:
-        specifier: ^3.2.5
-        version: 3.4.1
-
   packages/shared:
     dependencies:
       eslint:
@@ -315,32 +288,18 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
     devDependencies:
-      "@playnest/eslint-config":
+      "@playnest/configs":
         specifier: workspace:*
-        version: link:../eslint-config
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../prettier-config
-      "@playnest/typescript-config":
-        specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../configs
       "@types/node":
         specifier: ^22.9.0
         version: 22.10.1
 
-  packages/typescript-config: {}
-
   packages/web:
     devDependencies:
-      "@playnest/eslint-config":
+      "@playnest/configs":
         specifier: workspace:*
-        version: link:../eslint-config
-      "@playnest/prettier-config":
-        specifier: workspace:*
-        version: link:../prettier-config
-      "@playnest/typescript-config":
-        specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../configs
       "@types/react":
         specifier: ^19
         version: 19.0.8

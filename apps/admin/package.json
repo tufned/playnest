@@ -17,9 +17,7 @@
     "@playnest/web": "workspace:*"
   },
   "devDependencies": {
-    "@playnest/eslint-config": "workspace:*",
-    "@playnest/prettier-config": "workspace:*",
-    "@playnest/typescript-config": "workspace:*",
+    "@playnest/configs": "workspace:*",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.5.0",

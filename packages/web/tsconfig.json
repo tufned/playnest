@@ -1,5 +1,5 @@
 {
-  "extends": "@playnest/typescript-config/react-library.json",
+  "extends": "@playnest/configs/typescript/react.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",

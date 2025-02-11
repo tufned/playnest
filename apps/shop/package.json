@@ -21,9 +21,7 @@
     "@playnest/web": "workspace:*"
   },
   "devDependencies": {
-    "@playnest/eslint-config": "workspace:*",
-    "@playnest/prettier-config": "workspace:*",
-    "@playnest/typescript-config": "workspace:*",
+    "@playnest/configs": "workspace:*",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
     "@types/node": "^22.9.0",

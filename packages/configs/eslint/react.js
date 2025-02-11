@@ -2,7 +2,7 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import baseConfig from "@playnest/eslint-config/base";
+import baseConfig from "./base.js";
 import reactPlugin from "eslint-plugin-react";
 import reactRules from "./react-rules.js";
 

@@ -1,5 +1,5 @@
 {
-  "extends": "@playnest/typescript-config/node-library.json",
+  "extends": "@playnest/configs/typescript/node.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",

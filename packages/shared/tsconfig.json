@@ -1,5 +1,5 @@
 {
-  "extends": "@playnest/typescript-config/shared-library.json",
+  "extends": "@playnest/configs/typescript/shared-package.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",

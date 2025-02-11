@@ -1,4 +1,4 @@
-import nodeConfig from "@playnest/eslint-config/node";
+import { nodeConfig } from "@playnest/configs/eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default nodeConfig;

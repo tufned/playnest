@@ -3,7 +3,7 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 import eslintPluginPrettier from "eslint-plugin-prettier";
-import prettierOptions from "@playnest/prettier-config";
+import prettierOptions from "../prettier/prettier.config.js";
 import tseslintParser from "@typescript-eslint/parser";
 
 /** @type {import('eslint').Linter.Config[]} */

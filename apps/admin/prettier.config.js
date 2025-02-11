@@ -1,5 +1,3 @@
-import baseConfig from "@playnest/prettier-config";
+import baseConfig from "@playnest/configs/prettier";
 
-export default {
-  ...baseConfig
-};
+export default baseConfig;
