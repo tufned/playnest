@@ -17,8 +17,8 @@ export default [
       "*.config.mjs",
       "*.config.js",
       "*.config.mts",
-      "*.config.ts"
-    ]
+      "*.config.ts",
+    ],
   },
   { files: ["**/*.{ts,tsx}"] },
   {
@@ -36,9 +36,9 @@ export default [
     files: ["**/*.{js,jsx}", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
     languageOptions: {
       parserOptions: {
-        project: null
-      }
-    }
+        project: null,
+      },
+    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
