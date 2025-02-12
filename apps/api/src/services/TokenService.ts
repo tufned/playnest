@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 import envConfig from "../configs/env.config.js";
 import { createError } from "../utils/errorHelpers.js";
 import { UserJwtPayloadDTO } from "@playnest/shared/types/domains/user.types";
@@ -8,10 +8,10 @@ class TokenService {
   generateTokens(payload: UserJwtPayloadDTO): ITokens {
     try {
       const accessToken = jwt.sign(payload, envConfig.JWT_ACCESS_SECRET, {
-        expiresIn: envConfig.JWT_ACCESS_EXPIRES_IN
+        expiresIn: envConfig.JWT_ACCESS_EXPIRES_IN as `${number}h`
       });
       const refreshToken = jwt.sign(payload, envConfig.JWT_REFRESH_SECRET, {
-        expiresIn: envConfig.JWT_REFRESH_EXPIRES_IN
+        expiresIn: envConfig.JWT_REFRESH_EXPIRES_IN as `${number}h`
       });
 
       return {

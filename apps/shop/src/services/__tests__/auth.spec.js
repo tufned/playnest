@@ -28,7 +28,8 @@ describe("authService", () => {
     const mockSignupData = {
       email: "test@example.com",
       password: "password123",
-      username: "testuser"
+      passwordConfirm: "password123",
+      nickname: "testuser"
     };
 
     it("should successfully register a user", async () => {
@@ -36,7 +37,10 @@ describe("authService", () => {
 
       const result = await authService.signup(mockSignupData);
 
-      expect(api.post).toHaveBeenCalledWith(URLs.auth.signup, mockSignupData);
+      const { email, nickname, password } = mockSignupData;
+      const mappedSignupUserData = { email, nickname, password };
+
+      expect(api.post).toHaveBeenCalledWith(URLs.auth.signup, mappedSignupUserData);
       expect(result).toEqual({
         success: true,
         data: mockSuccessResponse.data
