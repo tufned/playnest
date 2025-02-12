@@ -1,6 +1,6 @@
-import { IUserLogin } from "@playnest/shared/types/models/user.types";
+import { UserLoginDTO } from "@playnest/shared/types/domains/user.types";
 
-export const defaultValues: IUserLogin = {
+export const defaultValues: UserLoginDTO = {
   email: "",
   password: ""
 };

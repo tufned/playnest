@@ -1,19 +1,22 @@
-import { IUserLogin, IUserSignup } from "@playnest/shared/types/models/user.types";
+import { UserLoginDTO } from "@playnest/shared/types/domains/user.types";
 import { ResponseType } from "@playnest/shared/types/response.types";
 import api from "~/lib/axios";
 import URLs from "~/constants/requests";
 import { errors } from "~/constants/errors";
-import { IAccessTokenResponse } from "~/types";
+import { IAccessTokenResponse, UserSignupForm } from "~/types";
+import UserMapper from "~/mappers/user.mapper";
 
 // TODO: refactor authService
 //   methods should return prepared data
 
 const authService = {
-  signup: async (formData: IUserSignup): Promise<ResponseType<IAccessTokenResponse>> => {
+  signup: async (form: UserSignupForm): Promise<ResponseType<IAccessTokenResponse>> => {
     try {
+      const userMapper = new UserMapper();
+      const userSignupDTO = userMapper.toSignupDTO(form);
       const response: ResponseType<IAccessTokenResponse> = await api.post(
         URLs.auth.signup,
-        formData
+        userSignupDTO
       );
       if (!response.success) throw new Error(response.message);
       return {
@@ -27,11 +30,13 @@ const authService = {
       };
     }
   },
-  login: async (formData: IUserLogin): Promise<ResponseType<IAccessTokenResponse>> => {
+  login: async (form: UserLoginDTO): Promise<ResponseType<IAccessTokenResponse>> => {
     try {
+      const userMapper = new UserMapper();
+      const userLoginDTO = userMapper.toLoginDTO(form);
       const response: ResponseType<IAccessTokenResponse> = await api.post(
         URLs.auth.login,
-        formData
+        userLoginDTO
       );
       if (!response.success) throw new Error(response.message);
       return {

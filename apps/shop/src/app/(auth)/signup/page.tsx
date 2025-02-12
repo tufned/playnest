@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Input from "~/components/input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { UserSignupForm } from "~/types";
-import authService from "~/services/auth";
+import authService from "~/services/auth.service";
 import { defaultValues } from "~/app/(auth)/signup/constats";
 import { authErrors } from "~/constants/errors";
 import PasswordVisibility from "~/components/auth/password-visibility/PasswordVisibility";

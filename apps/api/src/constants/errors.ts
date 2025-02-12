@@ -1,4 +1,5 @@
 export const errors = {
+  badRequest: "Виникла помилка при запиті",
   fieldsAreRequired: (fields: string[]) => `Поля ${fields.join(", ")} є обов'язковими`,
   alreadyRegistered: "Ця електронна пошта вже зареєстрована",
   nicknameIsTaken: "Цей псевдонім вже зайнятий",

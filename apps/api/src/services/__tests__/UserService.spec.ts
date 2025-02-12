@@ -2,7 +2,7 @@ import UserService from "../UserService.js";
 import User from "../../models/user.js";
 import { createError } from "../../utils/errorHelpers.js";
 import { errors } from "../../constants/errors.js";
-import { IUserSignup } from "@playnest/shared/types/models/user.types";
+import { UserSignupDTO } from "@playnest/shared/types/domains/user.types";
 
 jest.mock("../../models/user", () => ({
   findById: jest.fn(),
@@ -67,7 +67,7 @@ describe("UserService", () => {
   });
 
   describe("createUser", () => {
-    const mockUserData: IUserSignup = {
+    const mockUserData: UserSignupDTO = {
       email: "test@test.com",
       nickname: "testuser",
       password: "password123"

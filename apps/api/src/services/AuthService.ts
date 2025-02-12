@@ -1,23 +1,23 @@
-import { IUserSignup, IUserLogin } from "@playnest/shared/types/models/user.types";
+import { UserSignupDTO, UserLoginDTO } from "@playnest/shared/types/domains/user.types";
 import UserService from "./UserService.js";
 import { compareHash } from "../lib/bcrypt.js";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";
 import TokenService from "./TokenService.js";
-import UserMapper from "../mappers/UserMapper.js";
 import { ITokens } from "../types/auth.js";
 import { Response } from "express";
 import { authConfig } from "../constants/auth.js";
+import UserMapper from "../mappers/UserMapper.js";
 
 class AuthService {
   private readonly userService: UserService;
-  private readonly userMapper: UserMapper;
   private readonly tokenService: TokenService;
+  private readonly userMapper: UserMapper;
 
   constructor() {
     this.userService = new UserService();
-    this.userMapper = new UserMapper();
     this.tokenService = new TokenService();
+    this.userMapper = new UserMapper();
   }
 
   async refreshAccessToken(res: Response, refreshToken: string): Promise<ITokens> {
@@ -33,14 +33,14 @@ class AuthService {
     return this.tokenService.generateTokens(userJwtPayload);
   }
 
-  async signup(user: IUserSignup): Promise<ITokens> {
+  async signup(user: UserSignupDTO): Promise<ITokens> {
     const userDoc = await this.userService.createUser(user);
 
     const userJwtPayload = this.userMapper.toJwtPayload(userDoc);
     return this.tokenService.generateTokens(userJwtPayload);
   }
 
-  async login(user: IUserLogin): Promise<ITokens> {
+  async login(user: UserLoginDTO): Promise<ITokens> {
     const userDoc = await this.userService.getUserByField({ email: user.email });
     if (!userDoc) throw createError(404, errors.userDoesNotExist);
 

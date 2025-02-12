@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { UserModel } from "@playnest/shared/types/models/user.types";
+import { UserEntity } from "@playnest/shared/types/domains/user.types";
 import { authConfig } from "@playnest/shared/configs/auth.config";
 import { schemaErrors } from "../constants/errors.js";
 
-const userSchema = new mongoose.Schema<UserModel>({
+const userSchema = new mongoose.Schema<UserEntity>({
   nickname: {
     type: String,
     required: [true, schemaErrors.required("nickname")],
@@ -33,15 +33,6 @@ const userSchema = new mongoose.Schema<UserModel>({
       validator: (val: string) => val.includes("@"),
       message: schemaErrors.emailSymbol
     }
-  },
-  role: {
-    type: String,
-    enum: {
-      values: ["user", "admin"],
-      message: schemaErrors.enum("role", ["user", "admin"])
-    },
-    required: [true, schemaErrors.required("role")],
-    default: "user"
   },
   lastChangedAt: {
     type: Date,

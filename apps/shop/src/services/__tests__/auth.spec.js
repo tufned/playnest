@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import api from "~/lib/axios";
-import authService from "../auth";
+import authService from "../auth.service";
 import URLs from "~/constants/requests";
 import { errors } from "~/constants/errors";
 

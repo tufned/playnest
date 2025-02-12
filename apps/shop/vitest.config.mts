@@ -11,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './src'),
-      '@playnest/utils': path.resolve(__dirname, '../../packages/shared/src')
+      '@playnest/shared': path.resolve(__dirname, '../../packages/shared/src')
     }
   }
 });

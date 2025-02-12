@@ -15,7 +15,7 @@ import gamepadIcon2 from "~/assets/icons/gaming-pad-2.svg";
 import dashboardIcon from "~/assets/icons/layout-alt.svg";
 import BrandLogo from "~/components/brand-logo/BrandLogo";
 import { useAppDispatch, useAppSelector } from "~/hooks/useRedux";
-import authService from "~/services/auth";
+import authService from "~/services/auth.service";
 import { setAccessToken } from "~/redux/api/auth";
 import { useRouter } from "next/navigation";
 

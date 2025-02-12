@@ -1,18 +1,21 @@
 import { Request, Response } from "express";
 import { success } from "../utils/responses.js";
-import AuthMapper from "../mappers/AuthMapper.js";
 import AuthService from "../services/AuthService.js";
 import { authConfig, COOKIE_OPTIONS } from "../constants/auth.js";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";
+import UserValidator from "../validations/UserValidator.js";
+import UserService from "../services/UserService.js";
 
 class AuthController {
   private readonly authService: AuthService;
-  private readonly authMapper: AuthMapper;
+  private readonly userValidator: UserValidator;
+  private readonly userService: UserService;
 
   constructor() {
     this.authService = new AuthService();
-    this.authMapper = new AuthMapper();
+    this.userValidator = new UserValidator();
+    this.userService = new UserService();
   }
 
   refreshAccessToken = async (req: Request, res: Response) => {
@@ -26,15 +29,16 @@ class AuthController {
   };
 
   signup = async (req: Request, res: Response) => {
-    const user = await this.authMapper.mapRequestSignupData(req.body);
-    const tokens = await this.authService.signup(user);
+    const user = this.userValidator.parseSignupDTO(req.body);
+    const userWithHashedPasw = await this.userService.replacePasswordWithHash(user);
+    const tokens = await this.authService.signup(userWithHashedPasw);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
     res.status(201).json(success({ accessToken: tokens.accessToken }));
   };
 
   login = async (req: Request, res: Response) => {
-    const user = await this.authMapper.mapRequestLoginData(req.body);
+    const user = this.userValidator.parseLoginDTO(req.body);
     const tokens = await this.authService.login(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);

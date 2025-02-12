@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import envConfig from "../configs/env.config.js";
 import { createError } from "../utils/errorHelpers.js";
-import { IUserJwtPayload } from "@playnest/shared/types/models/user.types";
+import { UserJwtPayloadDTO } from "@playnest/shared/types/domains/user.types";
 import { ITokens } from "../types/auth.js";
 
 class TokenService {
-  generateTokens(payload: IUserJwtPayload): ITokens {
+  generateTokens(payload: UserJwtPayloadDTO): ITokens {
     try {
       const accessToken = jwt.sign(payload, envConfig.JWT_ACCESS_SECRET, {
         expiresIn: envConfig.JWT_ACCESS_EXPIRES_IN
@@ -25,7 +25,7 @@ class TokenService {
 
   private validateToken(token: string, secret: string) {
     try {
-      return jwt.verify(token, secret) as IUserJwtPayload;
+      return jwt.verify(token, secret) as UserJwtPayloadDTO;
     } catch (err) {
       return null;
     }
