@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "NODE_ENV=production node dist/app.js",
-    "dev": "NODE_ENV=development nodemon",
+    "start": "node dist/app.js",
+    "dev": "nodemon",
     "lint": "eslint src",
     "test": "vitest --run",
     "generate": "prisma generate",

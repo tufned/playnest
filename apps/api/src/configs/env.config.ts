@@ -5,7 +5,6 @@ const envConfig = {
   FRONTEND_PROTOCOL: process.env.FRONTEND_PROTOCOL,
   FRONTEND_DOMAIN: process.env.FRONTEND_DOMAIN,
   FRONTEND_PORT: process.env.FRONTEND_PORT,
-  FRONTEND_URL: process.env.FRONTEND_URL,
 
   DATABASE_URL: process.env.DATABASE_URL,
 
