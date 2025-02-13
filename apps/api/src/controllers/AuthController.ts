@@ -5,17 +5,14 @@ import { authConfig, COOKIE_OPTIONS } from "../constants/auth.js";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";
 import UserValidator from "../validations/UserValidator.js";
-import UserService from "../services/UserService.js";
 
 class AuthController {
   private readonly authService: AuthService;
   private readonly userValidator: UserValidator;
-  private readonly userService: UserService;
 
   constructor() {
     this.authService = new AuthService();
     this.userValidator = new UserValidator();
-    this.userService = new UserService();
   }
 
   refreshAccessToken = async (req: Request, res: Response) => {
@@ -30,8 +27,7 @@ class AuthController {
 
   signup = async (req: Request, res: Response) => {
     const user = this.userValidator.parseSignupDTO(req.body);
-    const userWithHashedPasw = await this.userService.replacePasswordWithHash(user);
-    const tokens = await this.authService.signup(userWithHashedPasw);
+    const tokens = await this.authService.signup(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
     res.status(201).json(success({ accessToken: tokens.accessToken }));

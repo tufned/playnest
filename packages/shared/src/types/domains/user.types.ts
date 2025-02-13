@@ -9,19 +9,14 @@ export interface UserSignupDTO {
   email: string;
 }
 
-export interface UserEntity {
-  _id: string;
+export interface UserDTO {
+  id: number;
   nickname: string;
-  password: string;
   email: string;
-  lastChangedAt: Date;
+  updatedAt: Date;
   createdAt: Date;
 }
 
-export interface UserDTO extends Omit<UserEntity, "password" | "_id"> {
-  id: UserEntity["_id"];
-}
-
 export interface UserJwtPayloadDTO {
-  id: UserEntity["_id"];
+  id: number;
 }

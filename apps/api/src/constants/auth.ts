@@ -12,5 +12,5 @@ export const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  domain: envConfig.COOKIE_DOMAIN
+  domain: envConfig.SERVER_DOMAIN
 } as const;

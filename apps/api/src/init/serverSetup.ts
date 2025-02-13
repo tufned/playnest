@@ -8,7 +8,7 @@ const { SERVER_PORT } = envConfig;
 const serverSetup = async (app: Express) => {
   await initDatabase();
   init(app);
-  app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
+  app.listen(SERVER_PORT, () => console.log(`🔹Listening on port ${SERVER_PORT}`));
 };
 
 export default serverSetup;
