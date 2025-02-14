@@ -8,9 +8,13 @@
     "start": "turbo start --filter=@playnest/shop --filter=@playnest/api --filter=@playnest/admin",
     "dev:shop": "turbo dev --filter=@playnest/shop --filter=@playnest/api --filter=@playnest/shared --filter=@playnest/web",
     "dev:admin": "turbo dev --filter=@playnest/admin --filter=@playnest/api --filter=@playnest/shared --filter=@playnest/web",
+    "dev:api": "turbo dev --filter=@playnest/api --filter=@playnest/shared",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma:generate": "pnpm --filter=@playnest/api generate",
+    "prisma:migrate": "pnpm --filter=@playnest/api migrate",
+    "prisma:deploy": "pnpm --filter=@playnest/api deploy"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
