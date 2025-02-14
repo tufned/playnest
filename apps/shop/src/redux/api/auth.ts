@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import envConfig from "~/config/env.config";
 import { AccessToken } from "~/types";
-import authService from "~/services/auth.service";
+import AuthService from "~/services/auth.service";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -9,7 +9,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     getAccessToken: builder.query<AccessToken, void>({
       queryFn: async () => {
-        const response = await authService.refreshAccessToken();
+        const response = await AuthService.refreshAccessToken();
         if (!response.success) return { data: null };
         return { data: response.data!.accessToken };
       }

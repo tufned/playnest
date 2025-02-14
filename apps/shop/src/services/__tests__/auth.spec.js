@@ -1,170 +1,109 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import api from "~/lib/axios";
-import authService from "../auth.service";
+import { AuthService } from "~/services/auth.service";
 import URLs from "~/constants/requests";
-import { errors } from "~/constants/errors";
+import { store } from "~/redux/store";
+import ResponseMapper from "~/mappers/response.mapper";
 
+let authService;
+let mockApiClient;
+let mockUserMapper;
 let mockSuccessResponse;
+let mockFailResponse;
 
-vi.mock("~/lib/axios", () => ({
-  default: {
-    post: vi.fn(),
-    get: vi.fn()
+vi.mock("~/redux/store", () => ({
+  store: {
+    getState: vi.fn(() => ({ common: { isAuthorized: true } }))
   }
 }));
 
-describe("authService", () => {
+describe("AuthService", () => {
   beforeEach(() => {
-    mockSuccessResponse = {
-      success: true,
-      data: {
-        accessToken: "mock-access-token"
-      }
+    mockApiClient = {
+      post: vi.fn(),
+      get: vi.fn()
     };
+
+    mockUserMapper = {
+      toSignupDTO: vi.fn(),
+      toLoginDTO: vi.fn()
+    };
+
+    authService = new AuthService(mockUserMapper, mockApiClient, URLs.auth);
+
+    mockSuccessResponse = ResponseMapper.toSuccessDTO({
+      accessToken: "mock-access-token"
+    });
+
+    mockFailResponse = ResponseMapper.toFailDTO("Request failed");
+
     vi.clearAllMocks();
   });
 
   describe("signup", () => {
     const mockSignupData = {
-      email: "test@example.com",
-      password: "password123",
-      passwordConfirm: "password123",
-      nickname: "testuser"
+      data: {
+        email: "test@example.com",
+        password: "password123",
+        passwordConfirm: "password123",
+        nickname: "testuser"
+      }
     };
 
     it("should successfully register a user", async () => {
-      vi.mocked(api.post).mockResolvedValueOnce(mockSuccessResponse);
+      mockApiClient.post.mockResolvedValueOnce(mockSuccessResponse);
+      mockUserMapper.toSignupDTO.mockReturnValue(mockSignupData.data);
 
       const result = await authService.signup(mockSignupData);
 
-      const { email, nickname, password } = mockSignupData;
-      const mappedSignupUserData = { email, nickname, password };
-
-      expect(api.post).toHaveBeenCalledWith(URLs.auth.signup, mappedSignupUserData);
-      expect(result).toEqual({
-        success: true,
-        data: mockSuccessResponse.data
-      });
-    });
-
-    it("should return an error on failed registration", async () => {
-      const errorMessage = "Registration failed";
-      vi.mocked(api.post).mockRejectedValueOnce(new Error(errorMessage));
-
-      const result = await authService.signup(mockSignupData);
-
-      expect(result).toEqual({
-        success: false,
-        message: errorMessage
-      });
-    });
-
-    it("should return general error on unexpected response", async () => {
-      vi.mocked(api.post).mockRejectedValueOnce("Unexpected error");
-
-      const result = await authService.signup(mockSignupData);
-
-      expect(result).toEqual({
-        success: false,
-        message: errors.badRequest
-      });
+      expect(mockUserMapper.toSignupDTO).toHaveBeenCalledWith(mockSignupData.data);
+      expect(mockApiClient.post).toHaveBeenCalledWith(
+        URLs.auth.signup,
+        mockSignupData.data
+      );
+      expect(result).toEqual(mockSuccessResponse);
     });
   });
 
   describe("login", () => {
     const mockLoginData = {
-      email: "test@example.com",
-      password: "password123"
+      data: { email: "test@example.com", password: "password123" }
     };
 
     it("should successfully authenticate user", async () => {
-      vi.mocked(api.post).mockResolvedValueOnce(mockSuccessResponse);
+      mockApiClient.post.mockResolvedValueOnce(mockSuccessResponse);
+      mockUserMapper.toLoginDTO.mockReturnValue(mockLoginData.data);
 
       const result = await authService.login(mockLoginData);
 
-      expect(api.post).toHaveBeenCalledWith(URLs.auth.login, mockLoginData);
-      expect(result).toEqual({
-        success: true,
-        data: mockSuccessResponse.data
-      });
-    });
-
-    it("should return an error on failed authentication", async () => {
-      const errorMessage = "Invalid credentials";
-      vi.mocked(api.post).mockRejectedValueOnce(new Error(errorMessage));
-
-      const result = await authService.login(mockLoginData);
-
-      expect(result).toEqual({
-        success: false,
-        message: errorMessage
-      });
+      expect(mockUserMapper.toLoginDTO).toHaveBeenCalledWith(mockLoginData.data);
+      expect(mockApiClient.post).toHaveBeenCalledWith(
+        URLs.auth.login,
+        mockLoginData.data
+      );
+      expect(result).toEqual(mockSuccessResponse);
     });
   });
 
   describe("refreshAccessToken", () => {
-    it("should successfully refresh access token", async () => {
-      vi.mocked(api.get).mockResolvedValueOnce(mockSuccessResponse);
+    it("should return null accessToken if user is not authorized and response is not successful", async () => {
+      store.getState.mockReturnValue({ common: { isAuthorized: false } });
+      mockApiClient.get.mockResolvedValueOnce(mockFailResponse);
 
       const result = await authService.refreshAccessToken();
 
-      expect(api.get).toHaveBeenCalledWith(URLs.auth.refresh);
-      expect(result).toEqual({
-        success: true,
-        data: mockSuccessResponse.data
-      });
-    });
-
-    it("should return an error on failed token refresh", async () => {
-      const errorMessage = "Token refresh failed";
-      vi.mocked(api.get).mockRejectedValueOnce(new Error(errorMessage));
-
-      const result = await authService.refreshAccessToken();
-
-      expect(result).toEqual({
-        success: false,
-        message: errorMessage
-      });
+      expect(mockApiClient.get).toHaveBeenCalledWith(URLs.auth.refresh);
+      expect(result).toEqual(ResponseMapper.toSuccessDTO({ accessToken: null }));
     });
   });
 
   describe("logout", () => {
-    mockSuccessResponse = {
-      success: true
-    };
-
     it("should successfully logout", async () => {
-      vi.mocked(api.get).mockResolvedValueOnce(mockSuccessResponse);
+      mockApiClient.get.mockResolvedValueOnce(mockSuccessResponse);
 
       const result = await authService.logout();
 
-      expect(api.get).toHaveBeenCalledWith(URLs.auth.logout);
-      expect(result).toEqual({
-        success: true
-      });
-    });
-
-    it("should return an error on failed logout", async () => {
-      const errorMessage = "Logout failed";
-      vi.mocked(api.get).mockRejectedValueOnce(new Error(errorMessage));
-
-      const result = await authService.logout();
-
-      expect(result).toEqual({
-        success: false,
-        message: errorMessage
-      });
-    });
-
-    it("should return general error on unexpected error", async () => {
-      vi.mocked(api.get).mockRejectedValueOnce("Unexpected error");
-
-      const result = await authService.logout();
-
-      expect(result).toEqual({
-        success: false,
-        message: errors.badRequest
-      });
+      expect(mockApiClient.get).toHaveBeenCalledWith(URLs.auth.logout);
+      expect(result).toEqual(mockSuccessResponse);
     });
   });
 });

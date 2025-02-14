@@ -30,11 +30,8 @@ const SignupPage = () => {
   } = useForm<UserSignupForm>({ defaultValues });
 
   const onSubmit: SubmitHandler<UserSignupForm> = async (data) => {
-    const response = await authService.signup(data);
-
-    // TODO: implement snackbar error message
-    if (!response.success) return console.error(response.message);
-
+    const response = await authService.signup({ data });
+    if (!response.success) return;
     dispatch(setAccessToken(response.data!.accessToken));
     router.replace(routes.index);
   };

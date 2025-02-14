@@ -1,88 +1,52 @@
 import { UserLoginDTO } from "@playnest/shared/types/domains/user.types";
-import { ResponseType } from "@playnest/shared/types/response.types";
-import api from "~/lib/axios";
+import ApiClient from "~/lib/api-client";
 import URLs from "~/constants/requests";
-import { errors } from "~/constants/errors";
 import { IAccessTokenResponse, UserSignupForm } from "~/types";
 import UserMapper from "~/mappers/user.mapper";
+import { requestDecorator } from "~/utils/request-decorator";
+import { store } from "~/redux/store";
 
-// TODO: refactor authService
-//   methods should return prepared data
-
-const authService = {
-  signup: async (form: UserSignupForm): Promise<ResponseType<IAccessTokenResponse>> => {
-    try {
-      const userMapper = new UserMapper();
-      const userSignupDTO = userMapper.toSignupDTO(form);
-      const response: ResponseType<IAccessTokenResponse> = await api.post(
-        URLs.auth.signup,
-        userSignupDTO
-      );
-      if (!response.success) throw new Error(response.message);
-      return {
-        success: true,
-        data: response.data
-      };
-    } catch (err) {
-      return {
-        success: false,
-        message: err instanceof Error ? err.message : errors.badRequest
-      };
-    }
-  },
-  login: async (form: UserLoginDTO): Promise<ResponseType<IAccessTokenResponse>> => {
-    try {
-      const userMapper = new UserMapper();
-      const userLoginDTO = userMapper.toLoginDTO(form);
-      const response: ResponseType<IAccessTokenResponse> = await api.post(
-        URLs.auth.login,
-        userLoginDTO
-      );
-      if (!response.success) throw new Error(response.message);
-      return {
-        success: true,
-        data: response.data
-      };
-    } catch (err) {
-      return {
-        success: false,
-        message: err instanceof Error ? err.message : errors.badRequest
-      };
-    }
-  },
-  refreshAccessToken: async (): Promise<ResponseType<IAccessTokenResponse>> => {
-    try {
-      const response: ResponseType<IAccessTokenResponse> = await api.get(
-        URLs.auth.refresh
-      );
-      if (!response.success) throw new Error(response.message);
-      return {
-        success: true,
-        data: response.data
-      };
-    } catch (err) {
-      return {
-        success: false,
-        message: err instanceof Error ? err.message : errors.badRequest
-      };
-    }
-  },
-  logout: async (): Promise<ResponseType> => {
-    try {
-      const response: ResponseType<IAccessTokenResponse> = await api.get(
-        URLs.auth.logout
-      );
-      if (!response.success) throw new Error(response.message);
-      return {
-        success: true
-      };
-    } catch (err) {
-      return {
-        success: false,
-        message: err instanceof Error ? err.message : errors.badRequest
-      };
-    }
+export class AuthService {
+  constructor(
+    private readonly userMapper = new UserMapper(),
+    private readonly apiClient = new ApiClient(),
+    private readonly urls = URLs.auth
+  ) {
+    this.userMapper = userMapper;
+    this.apiClient = apiClient;
+    this.urls = urls;
   }
-};
 
-export default authService;
+  signup = requestDecorator(async (props: { data: UserSignupForm }) => {
+    const userSignupDTO = this.userMapper.toSignupDTO(props.data);
+    return await this.apiClient.post<IAccessTokenResponse>(
+      this.urls.signup,
+      userSignupDTO
+    );
+  });
+
+  login = requestDecorator(async (props: { data: UserLoginDTO }) => {
+    const userLoginDTO = this.userMapper.toLoginDTO(props.data);
+    return await this.apiClient.post<IAccessTokenResponse>(this.urls.login, userLoginDTO);
+  });
+
+  refreshAccessToken = requestDecorator(async () => {
+    let response = await this.apiClient.get<IAccessTokenResponse>(this.urls.refresh);
+    const isAuthorized = store.getState().common.isAuthorized;
+
+    if (!isAuthorized && !response.success)
+      response = {
+        success: true,
+        data: {
+          accessToken: null
+        }
+      };
+    return response;
+  });
+
+  logout = requestDecorator(async () => {
+    return await this.apiClient.get<IAccessTokenResponse>(this.urls.logout);
+  });
+}
+
+export default new AuthService();

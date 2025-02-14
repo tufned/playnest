@@ -1,13 +1,13 @@
-export interface ResponseFail {
+export interface ResponseFailDTO {
   success: false;
   message: string;
 }
 
-export interface ResponseSuccess<T extends object> {
+export interface ResponseSuccessDTO<T> {
   success: true;
   data?: T;
 }
 
-export type ResponseType<T extends object = Record<string, unknown>> =
-  | ResponseFail
-  | ResponseSuccess<T>;
+export type ResponseDTO<T extends object = Record<string, unknown>> =
+  | ResponseFailDTO
+  | ResponseSuccessDTO<T>;

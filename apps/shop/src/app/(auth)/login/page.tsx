@@ -8,11 +8,11 @@ import InputPassword from "~/components/auth/input-password/InputPassword";
 import PasswordVisibility from "~/components/auth/password-visibility/PasswordVisibility";
 import { UserLoginDTO } from "@playnest/shared/types/domains/user.types";
 import { defaultValues } from "~/app/(auth)/login/constants";
-import authService from "~/services/auth.service";
 import { setAccessToken } from "~/redux/api/auth";
 import routes from "~/constants/routes";
 import { useAppDispatch } from "~/hooks/useRedux";
 import { useRouter } from "next/navigation";
+import AuthService from "~/services/auth.service";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -26,12 +26,9 @@ const LoginPage = () => {
   } = useForm<UserLoginDTO>({ defaultValues });
 
   const onSubmit: SubmitHandler<UserLoginDTO> = async (data) => {
-    const response = await authService.login(data);
-
-    // TODO: implement snackbar error message
-    if (!response.success) return console.error(response.message);
-
-    dispatch(setAccessToken(response.data!.accessToken));
+    const token = await AuthService.login({ data });
+    if (!token.success) return;
+    dispatch(setAccessToken(token.data!.accessToken));
     router.replace(routes.index);
   };
 
