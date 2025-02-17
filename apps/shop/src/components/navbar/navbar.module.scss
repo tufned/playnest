@@ -1,0 +1,18 @@
+@use '~/styles/partials/utils' as utils;
+
+.navbarList {
+  @apply w-full flex flex-col items-center;
+
+  .navbarItem {
+    @include utils.button-wrapper;
+    @apply w-5/6 border border-transparent;
+  }
+
+  .linkNavbarItemActive {
+    @apply pointer-events-none;
+
+    .navbarItem {
+      @apply bg-secondary border-secondaryBorder;
+    }
+  }
+}
