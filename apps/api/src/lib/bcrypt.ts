@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import config from '../configs/config.js';
-import { createError } from '../utils/errorHelpers.js';
+import bcrypt from "bcrypt";
+import config from "../configs/config.js";
+import { createError } from "../utils/errorHelpers.js";
 
 export const createHash = async (plainText: string) => {
   try {

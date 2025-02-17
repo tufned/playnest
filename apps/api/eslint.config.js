@@ -1,12 +1,4 @@
-import nodeConfig from '@playnest/eslint-config/node';
+import { nodeConfig } from "@playnest/configs/eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
-export default [
-  ...nodeConfig,
-  { ignores: ['dist/*', 'node_modules/*', '.turbo/*'] },
-  {
-    languageOptions: {
-      parserOptions: { project: './tsconfig.json' }
-    }
-  }
-];
+export default nodeConfig;

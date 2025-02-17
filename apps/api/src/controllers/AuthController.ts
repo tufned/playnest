@@ -1,18 +1,18 @@
-import { Request, Response } from 'express';
-import { success } from '@playnest/utils';
-import AuthMapper from '../mappers/AuthMapper.js';
-import AuthService from '../services/AuthService.js';
-import { authConfig, COOKIE_OPTIONS } from '../constants/auth.js';
-import { createError } from '../utils/errorHelpers.js';
-import { errors } from '../constants/errors.js';
+import { Request, Response } from "express";
+import { success } from "../utils/responses.js";
+import AuthService from "../services/AuthService.js";
+import { authConfig, COOKIE_OPTIONS } from "../constants/auth.js";
+import { createError } from "../utils/errorHelpers.js";
+import { errors } from "../constants/errors.js";
+import UserValidator from "../validations/UserValidator.js";
 
 class AuthController {
   private readonly authService: AuthService;
-  private readonly authMapper: AuthMapper;
+  private readonly userValidator: UserValidator;
 
   constructor() {
     this.authService = new AuthService();
-    this.authMapper = new AuthMapper();
+    this.userValidator = new UserValidator();
   }
 
   refreshAccessToken = async (req: Request, res: Response) => {
@@ -26,7 +26,7 @@ class AuthController {
   };
 
   signup = async (req: Request, res: Response) => {
-    const user = await this.authMapper.mapRequestSignupData(req.body);
+    const user = this.userValidator.parseSignupDTO(req.body);
     const tokens = await this.authService.signup(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
@@ -34,7 +34,7 @@ class AuthController {
   };
 
   login = async (req: Request, res: Response) => {
-    const user = await this.authMapper.mapRequestLoginData(req.body);
+    const user = this.userValidator.parseLoginDTO(req.body);
     const tokens = await this.authService.login(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);

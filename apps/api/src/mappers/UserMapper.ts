@@ -1,22 +1,20 @@
-import { HydratedDocument } from 'mongoose';
-import { IUserJwtPayload, IUserResponse, UserModel } from '@playnest/utils';
+import { UserJwtPayloadDTO, UserDTO } from "@playnest/shared/types/domains/user.types";
+import { User } from "@prisma/client";
 
 class UserMapper {
-  toResponse(user: HydratedDocument<UserModel>): IUserResponse {
+  toDTO(user: User): UserDTO {
     return {
-      id: user._id,
+      id: user.id,
       nickname: user.nickname,
       email: user.email,
-      role: user.role,
-      lastChangedAt: user.lastChangedAt,
+      updatedAt: user.updatedAt,
       createdAt: user.createdAt
     };
   }
 
-  toJwtPayload(user: HydratedDocument<UserModel>): IUserJwtPayload {
+  toJwtPayload(user: User): UserJwtPayloadDTO {
     return {
-      id: user._id,
-      role: user.role
+      id: user.id
     };
   }
 }

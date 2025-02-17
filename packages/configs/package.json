@@ -1,0 +1,38 @@
+{
+  "name": "@playnest/configs",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint/index.js",
+    "./prettier": "./prettier/prettier.config.js",
+    "./typescript/react.json": "./typescript/react.json",
+    "./typescript/node.json": "./typescript/node.json",
+    "./typescript/next.json": "./typescript/next.json",
+    "./typescript/vite.base.json": "./typescript/vite.base.json",
+    "./typescript/shared-package.json": "./typescript/shared-package.json"
+  },
+  "files": [
+    "eslint",
+    "prettier",
+    "typescript"
+  ],
+  "peerDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "5.5.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "@next/eslint-plugin-next": "15.0.3",
+    "globals": "13.24.0",
+    "typescript-eslint": "^8.14.0"
+  }
+}

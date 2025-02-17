@@ -2,17 +2,38 @@ This is a monorepo built using `Turborepo`.
 
 # Apps and Packages
 
-- `@playnest/api`: Express.js app
-- `@playnest/mobile`: React Native app
-- `@playnest/web`: Next.js app
-- `@playnest/utils`: library shared by frontend, mobile and backend
-- `@playnest/slint-config`: `eslint` configurations
-- `@playnest/typescript-config`: `typescript` configurations
-- `@playnest/prettier-config`: `prettier` configuration
+- `apps/api`: Express.js + Prisma ORM
+- `apps/shop`: Next.js + Redux-toolkit
+- `apps/admin`: React.js + Zustand
+- `packages/shared`: shared library for all apps (shop, admin and api); used primarily for types and configs
+- `packages/web`: shared library for frontend apps (shop and admin)
+- `packages/configs`: typescript, eslint, prettier configurations
 
-Each app and `utils` package is 100% [TypeScript](https://www.typescriptlang.org/).
+---
+
+- All apps and packages are 100% TypeScript (except `packages/configs` and tests)
+- All apps are using `Vitest` for testing
+- Tests are located in nested `__tests__` folders and written in JavaScript
+- `PostgreSQL` as a database provider
+- `Husky` and `lint-staged` are used for pre-commit hook
+- `GitHub Actions` for CI
+
+### Deployment
+
+- `apps/shop` - Vercel
+- `apps/admin` - ???
+- DB (`PostgreSQL`) - Supabase
+- `apps/api` - ???
 
 # How To Launch
+
+Short answer:
+
+```bash
+pnpm dev
+```
+
+Explanatory answer:
 
 ## Step 1
 
@@ -29,7 +50,7 @@ For installing packages also add `--filter` flag to specify workspace.
 Example:
 
 ```
-pnpm add --save-dev typescript --filter @playnest/web
+pnpm add --save-dev typescript --filter @playnest/api
 ```
 
 ## Step 2
@@ -42,28 +63,47 @@ pnpm install
 
 ## Step 3
 
+Create `.env` files in each app:
+
+## Step 4
+
+Apply existing `Prisma` migrations:
+
+```bash
+pnpm prisma:deploy
+```
+
+## Final Step
+
 To start all apps and packages in dev mode:
 
 ```bash
 pnpm dev
 ```
 
-To develop web (omits mobile):
+To develop `shop` (omits `admin`):
 
 ```bash
-pnpm dev:web
+pnpm dev:shop
 ```
 
-To develop mobile (omits web):
+To develop `admin` (omits `shop`):
 
 ```bash
-pnpm dev:mobile
+pnpm dev:admin
+```
+
+To develop _only_ `api`:
+
+```bash
+pnpm dev:api
 ```
 
 # Contributing
 
 1. Create an **issue**. Assign yourself
-2. Create a **new branch** from `dev` branch. Every branch name should start with task number and contain short description. e.g. **125-navbar-fix**
+2. Create a **new branch** from `dev` branch. Every branch name should start with task number and contain short
+   description. e.g. **125-navbar-fix**
 3. Commit changes
 4. Create a **pull request**
 5. Link pull request to an issue
