@@ -2,3 +2,13 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx lint-staged
+
+# Check for changes in @playnest/core
+CHANGED=$(git diff --name-only HEAD~1 HEAD packages/core/ | wc -l)
+
+if [ "$CHANGED" -gt 0 ]; then
+  echo "🚀 Updating @playnest/core package version..."
+  npm version patch --no-git-tag-version
+fi
+
+git add .

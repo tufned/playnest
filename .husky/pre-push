@@ -12,9 +12,6 @@ if [ "$CHANGED" -gt 0 ]; then
 
   cd packages/core || exit
 
-  echo "🚀 Updating package version..."
-  npm version patch --no-git-tag-version
-
   echo "📤 Publishing to npm..."
   npm publish
 
@@ -24,4 +21,3 @@ if [ "$CHANGED" -gt 0 ]; then
 else
   echo "ℹ️ No changes in @playnest/core, skip publishing"
 fi
-undefined
