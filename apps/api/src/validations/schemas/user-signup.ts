@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { authConfig } from "@playnest/shared/configs/auth.config";
+import { authConfig } from "@playnest/core/configs/auth.config";
 
 const UserSignupSchema = z.object({
   nickname: z

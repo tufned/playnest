@@ -1,4 +1,4 @@
-import { UserSignupDTO } from "@playnest/shared/types/domains/user.types";
+import { UserSignupDTO } from "@playnest/core/types/domains/user.types";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";
 import Database from "../lib/db-facade.js";

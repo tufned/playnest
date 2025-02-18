@@ -1,4 +1,4 @@
-import { UserJwtPayloadDTO, UserDTO } from "@playnest/shared/types/domains/user.types";
+import { UserJwtPayloadDTO, UserDTO } from "@playnest/core/types/domains/user.types";
 import { User } from "@prisma/client";
 
 class UserMapper {

@@ -1,4 +1,4 @@
-import { UserLoginDTO, UserSignupDTO } from "@playnest/shared/types/domains/user.types";
+import { UserLoginDTO, UserSignupDTO } from "@playnest/core/types/domains/user.types";
 import { UserSignupForm } from "~/types";
 
 class UserMapper {

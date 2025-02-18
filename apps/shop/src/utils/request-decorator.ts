@@ -3,7 +3,7 @@ import {
   ResponseDTO,
   ResponseFailDTO,
   ResponseSuccessDTO
-} from "@playnest/shared/types/response.types";
+} from "@playnest/core/types/response.types";
 import ResponseMapper from "~/mappers/response.mapper";
 
 export function requestDecorator<T extends object, P = void>(

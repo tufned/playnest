@@ -1,7 +1,11 @@
 {
-  "name": "@playnest/shared",
+  "name": "@playnest/core",
   "version": "1.0.0",
-  "description": "",
+  "author": "Den Funderat <funderatdenis@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./types/*": {
       "types": "./dist/types/*.d.ts",
@@ -12,6 +16,9 @@
       "import": "./dist/configs/*.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -19,16 +26,11 @@
     "lint": "eslint src",
     "test": "echo \"vitest\""
   },
-  "peerDependencies": {
+  "devDependencies": {
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "typescript": "5.5.4"
-  },
-  "devDependencies": {
-    "@playnest/configs": "workspace:*",
+    "typescript": "5.5.4",
+    "@playnest/configs": "^1.0.0",
     "@types/node": "^22.9.0"
-  },
-  "keywords": [],
-  "author": "Den Funderat <funderatdenis@gmail.com>",
-  "license": "ISC"
+  }
 }

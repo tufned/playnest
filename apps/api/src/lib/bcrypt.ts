@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import config from "../configs/config.js";
 import { createError } from "../utils/errorHelpers.js";
 

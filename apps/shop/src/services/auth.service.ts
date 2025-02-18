@@ -1,4 +1,4 @@
-import { UserLoginDTO } from "@playnest/shared/types/domains/user.types";
+import { UserLoginDTO } from "@playnest/core/types/domains/user.types";
 import ApiClient from "~/lib/api-client";
 import URLs from "~/constants/requests";
 import { IAccessTokenResponse, UserSignupForm } from "~/types";

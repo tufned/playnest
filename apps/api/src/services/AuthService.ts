@@ -1,4 +1,4 @@
-import { UserSignupDTO, UserLoginDTO } from "@playnest/shared/types/domains/user.types";
+import { UserSignupDTO, UserLoginDTO } from "@playnest/core/types/domains/user.types";
 import UserService from "./UserService.js";
 import { compareHash } from "../lib/bcrypt.js";
 import { createError } from "../utils/errorHelpers.js";

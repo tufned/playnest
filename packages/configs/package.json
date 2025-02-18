@@ -1,7 +1,12 @@
 {
   "name": "@playnest/configs",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
+  "author": "Den Funderat <funderatdenis@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./eslint": "./eslint/index.js",
     "./prettier": "./prettier/prettier.config.js",
@@ -16,12 +21,10 @@
     "prettier",
     "typescript"
   ],
-  "peerDependencies": {
+  "devDependencies": {
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "typescript": "5.5.4"
-  },
-  "devDependencies": {
+    "typescript": "5.5.4",
     "@eslint/js": "^8.57.0",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",

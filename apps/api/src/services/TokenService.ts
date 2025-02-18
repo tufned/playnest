@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import envConfig from "../configs/env.config.js";
 import { createError } from "../utils/errorHelpers.js";
-import { UserJwtPayloadDTO } from "@playnest/shared/types/domains/user.types";
+import { UserJwtPayloadDTO } from "@playnest/core/types/domains/user.types";
 import { ITokens } from "../types/auth.types.js";
 
 class TokenService {

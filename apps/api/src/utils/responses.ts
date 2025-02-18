@@ -1,7 +1,4 @@
-import {
-  ResponseFailDTO,
-  ResponseSuccessDTO
-} from "@playnest/shared/types/response.types";
+import { ResponseFailDTO, ResponseSuccessDTO } from "@playnest/core/types/response.types";
 
 export const success = <T extends object = Record<string, unknown>>(
   response?: T
