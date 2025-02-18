@@ -1,7 +1,4 @@
-import {
-  ResponseFailDTO,
-  ResponseSuccessDTO
-} from "@playnest/core/types/response.types";
+import { ResponseFailDTO, ResponseSuccessDTO } from "@playnest/core/types/response.types";
 
 class ResponseMapper {
   static toSuccessDTO<T extends object>(data?: T): ResponseSuccessDTO<T> {

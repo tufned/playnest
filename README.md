@@ -5,9 +5,9 @@ This is a monorepo built using `Turborepo`.
 - `apps/api`: Express.js + Prisma ORM
 - `apps/shop`: Next.js + Redux-toolkit
 - `apps/admin`: React.js + Zustand
-- `packages/shared`: shared library for all apps (shop, admin and api); used primarily for types and configs
+- `packages/core`: shared library for all apps (shop, admin and api); published on npm
 - `packages/web`: shared library for frontend apps (shop and admin)
-- `packages/configs`: typescript, eslint, prettier configurations
+- `packages/configs`: typescript, eslint, prettier configurations; published on npm
 
 ---
 
@@ -17,13 +17,6 @@ This is a monorepo built using `Turborepo`.
 - `PostgreSQL` as a database provider
 - `Husky` and `lint-staged` are used for pre-commit hook
 - `GitHub Actions` for CI
-
-### Deployment
-
-- `apps/shop` - Vercel
-- `apps/admin` - ???
-- DB (`PostgreSQL`) - Supabase
-- `apps/api` - ???
 
 # How To Launch
 
@@ -97,6 +90,25 @@ To develop _only_ `api`:
 
 ```bash
 pnpm dev:api
+```
+
+# Deployment
+
+- `apps/shop` - Vercel
+- `apps/admin` - Vercel
+- DB (`PostgreSQL`) - Supabase
+- `apps/api` - Railway
+
+To build docker container for `apps/api`:
+
+```bash
+docker build -t playnest -f apps/api/Dockerfile .
+```
+
+To run created container:
+
+```bash
+docker run -p 3030:3030 playnest
 ```
 
 # Contributing
