@@ -1,0 +1,27 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Check for changes in @playnest/core
+CHANGED=$(git diff --name-only HEAD~1 HEAD packages/core/ | wc -l)
+
+if [ "$CHANGED" -gt 0 ]; then
+  echo "🔍 Changes detected in @playnest/core. Launching publishing..."
+
+  echo "📦 Building..."
+  pnpm build --filter @playnest/core
+
+  cd packages/core || exit
+
+  echo "🚀 Updating package version..."
+  npm version patch --no-git-tag-version
+
+  echo "📤 Publishing to npm..."
+  npm publish
+
+  cd ../../
+
+  echo "✅ Published"
+else
+  echo "ℹ️ No changes in @playnest/core, skip publishing"
+fi
+undefined
