@@ -25,8 +25,8 @@ if [ "$CHANGED" -gt 0 ]; then
 
   git add packages/core/package.json
   git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
-  git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"
   git push --no-verify origin "$(git rev-parse --abbrev-ref HEAD)"
+  git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"
 
   echo "✅ Published"
 else
