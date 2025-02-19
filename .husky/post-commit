@@ -8,9 +8,9 @@ if [ "$CHANGED" -gt 0 ]; then
   echo "🚀 Updating package version..."
 
   CURRENT_VERSION=$(node -p "require('./packages/core/package.json').version")
-  NEW_VERSION=$(npm version patch --no-git-tag-version)
+  NEW_VERSION=$(pnpm version patch --no-git-tag-version --filter @playnest/core)
 
-  git add ./packages/core/package.json
+  git add packages/core/package.json
   git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
 
   echo "🔄 @playnest/core updated version: v$CURRENT_VERSION → $NEW_VERSION"
