@@ -1,8 +1,16 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Get latest state of the repository
+REMOTE_REF=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+
+if [ -z "$REMOTE_REF" ]; then
+  echo "ℹ️ No upstream branch found. Skipping publishing."
+  exit 0
+fi
+
 # Check for changes in @playnest/core
-CHANGED=$(git diff --name-only HEAD~1 HEAD packages/core/ | wc -l)
+CHANGED=$(git diff --name-only "$REMOTE_REF" HEAD -- packages/core/ | wc -l)
 
 if [ "$CHANGED" -gt 0 ]; then
   echo "🔍 Changes detected in @playnest/core. Launching publishing..."
@@ -16,7 +24,7 @@ if [ "$CHANGED" -gt 0 ]; then
   CURRENT_VERSION=$(node -p "require('./package.json').version")
   NEW_VERSION=$(npm version patch --no-git-tag-version)
 
-  echo "🔄 Updated version: $CURRENT_VERSION → $NEW_VERSION"
+  echo "🔄 Updated version: v$CURRENT_VERSION → $NEW_VERSION"
 
   echo "📤 Publishing $NEW_VERSION to npm..."
   npm publish
@@ -24,9 +32,10 @@ if [ "$CHANGED" -gt 0 ]; then
   cd ../../
 
   git add packages/core/package.json
-  git commit -m "chore(@playnest/core): version patch [$CURRENT_VERSION → $NEW_VERSION]"
+  git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
+  git push
 
   echo "✅ Published"
 else
-  echo "ℹ️ No changes in @playnest/core, skip publishing"
+  echo "ℹ️ No changes in @playnest/core. Skipping publishing"
 fi
