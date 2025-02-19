@@ -12,7 +12,7 @@ if [ "$CHANGED" -gt 0 ]; then
   NEW_VERSION=$(npm version patch --no-git-tag-version)
 
   git add package.json
-  git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
+  git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]" --no-verify
 
   echo "🔄 @playnest/core updated version: v$CURRENT_VERSION → $NEW_VERSION"
 fi
