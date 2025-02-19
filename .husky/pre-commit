@@ -8,17 +8,22 @@ CHANGED=$(git diff --name-only HEAD~1 HEAD packages/core/ | wc -l)
 
 if [ "$CHANGED" -gt 0 ]; then
   echo "🚀 Updating package version..."
+
+  git stash push --keep-index --quiet
+
   cd packages/core || exit
 
   CURRENT_VERSION=$(node -p "require('./package.json').version")
   NEW_VERSION=$(npm version patch --no-git-tag-version)
 
-  git stash push --keep-index --quiet
   git add package.json
   git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]" --no-verify
-  git stash pop --quiet
 
   echo "🔄 @playnest/core updated version: v$CURRENT_VERSION → $NEW_VERSION"
+
+  cd ../../
+
+  git stash pop --quiet
 fi
 
 # git commit -m "msg" --publish
