@@ -12,21 +12,10 @@ if [ "$CHANGED" -gt 0 ]; then
 
   cd packages/core || exit
 
-  echo "🚀 Updating package version..."
-  CURRENT_VERSION=$(node -p "require('./package.json').version")
-  NEW_VERSION=$(npm version patch --no-git-tag-version)
-
-  echo "🔄 Updated version: v$CURRENT_VERSION → $NEW_VERSION"
-
-  echo "📤 Publishing $NEW_VERSION to npm..."
+  echo "📤 Publishing to npm..."
   npm publish
 
   cd ../../
-
-  git add packages/core/package.json
-  git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
-  git push --no-verify origin "$(git rev-parse --abbrev-ref HEAD)"
-  git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"
 
   echo "✅ Published"
 else
