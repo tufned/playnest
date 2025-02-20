@@ -1,6 +1,6 @@
 {
   "name": "@playnest/configs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "author": "Den Funderat <funderatdenis@gmail.com>",
   "description": "TypeScript, ESLint and Prettier configs for Playnest project",

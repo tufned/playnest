@@ -42,8 +42,8 @@ importers:
         version: 19.0.0(react@19.0.0)
     devDependencies:
       "@playnest/configs":
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.3
+        version: 1.0.3
       "@types/react":
         specifier: ^19.0.8
         version: 19.0.10
@@ -112,8 +112,8 @@ importers:
         version: 3.24.2
     devDependencies:
       "@playnest/configs":
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.3
+        version: 1.0.3
       "@types/bcrypt":
         specifier: ^5.0.2
         version: 5.0.2
@@ -188,8 +188,8 @@ importers:
         version: 9.2.0(@types/react@19.0.10)(react@19.0.0)(redux@5.0.1)
     devDependencies:
       "@playnest/configs":
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.3
+        version: 1.0.3
       "@testing-library/dom":
         specifier: ^10.4.0
         version: 10.4.0
@@ -287,8 +287,8 @@ importers:
   packages/core:
     devDependencies:
       "@playnest/configs":
-        specifier: ^1.0.0
-        version: 1.0.1
+        specifier: ^1.0.3
+        version: 1.0.3
       "@types/node":
         specifier: ^22.9.0
         version: 22.13.4
@@ -1635,10 +1635,10 @@ packages:
       }
     engines: { node: ^12.20.0 || ^14.18.0 || >=16.0.0 }
 
-  "@playnest/configs@1.0.1":
+  "@playnest/configs@1.0.3":
     resolution:
       {
-        integrity: sha512-Bn5GRonxmPaDRzDgAqCFcNZJHhXmzdzI8xmIoPIG+m/vOGh+PCPMOiWXAML6ADN+dHTPOlVRLtcwFKUNsuAhDA==,
+        integrity: sha512-l5Em/pLjX8b9I6+F5w9UgEjHrvwmYIG/RRSn+7iJYua5Q3D+yncWvpScxRdVV6nPQ/ytTY5ApQC+icEkMgLPTw==,
       }
 
   "@playnest/core@1.0.31":
@@ -6992,7 +6992,7 @@ snapshots:
 
   "@pkgr/core@0.1.1": {}
 
-  "@playnest/configs@1.0.1": {}
+  "@playnest/configs@1.0.3": {}
 
   "@playnest/core@1.0.31": {}
 

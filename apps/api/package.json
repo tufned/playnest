@@ -30,7 +30,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@playnest/configs": "^1.0.1",
+    "@playnest/configs": "^1.0.3",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",

@@ -21,7 +21,7 @@
     "react-redux": "^9.2.0"
   },
   "devDependencies": {
-    "@playnest/configs": "^1.0.1",
+    "@playnest/configs": "^1.0.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
     "@types/node": "^22.9.0",
