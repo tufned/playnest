@@ -14,9 +14,9 @@ npm publish
 cd ../../
 
 # update @playnest/configs in apps
-pnpm update @playnest/core --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop" --filter="@playnest/core" --filter="@playnest/web"
+pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop" --filter="@playnest/core" --filter="@playnest/web"
 
 git add pnpm-lock.yaml packages/configs/package.json apps/**/package.json
 git commit -m "chore(@playnest/configs): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
 
-echo "✅ Published"
+echo "✅ @playnest/configs published"

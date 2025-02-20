@@ -22,4 +22,4 @@ pnpm update @playnest/core --filter="@playnest/api" --filter="@playnest/admin" -
 git add pnpm-lock.yaml packages/core/package.json apps/**/package.json
 git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
 
-echo "✅ Published"
+echo "✅ @playnest/core published"
