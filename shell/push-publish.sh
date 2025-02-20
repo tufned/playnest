@@ -5,14 +5,20 @@ CHANGED_WEB=$(git diff --name-only "origin/$(git rev-parse --abbrev-ref HEAD)" H
 
 if [ "$CHANGED_CONFIGS" -gt 0 ]; then
   sh "shell/publish/configs.sh"
+else
+  echo "ℹ️ No changes in @playnest/configs. Skipping publishing"
 fi
 
 if [ "$CHANGED_CORE" -gt 0 ]; then
   sh "shell/publish/core.sh"
+else
+  echo "ℹ️ No changes in @playnest/core. Skipping publishing"
 fi
 
 if [ "$CHANGED_WEB" -gt 0 ]; then
   sh "shell/publish/web.sh"
+else
+  echo "ℹ️ No changes in @playnest/web. Skipping publishing"
 fi
 
 git push --no-verify origin "$(git rev-parse --abbrev-ref HEAD)"
