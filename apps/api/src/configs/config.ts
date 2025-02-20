@@ -1,8 +1,6 @@
 import envConfig from "./env.config.js";
 
-const { FRONTEND_PROTOCOL, FRONTEND_DOMAIN, FRONTEND_PORT } = envConfig;
-
-const FRONTEND_URL = `${FRONTEND_PROTOCOL}://${FRONTEND_DOMAIN}:${FRONTEND_PORT}`;
+const { FRONTEND_URL } = envConfig;
 
 const config = {
   FRONTEND_URL,
