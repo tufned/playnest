@@ -29,8 +29,8 @@ importers:
   apps/admin:
     dependencies:
       "@playnest/core":
-        specifier: ^1.0.29
-        version: 1.0.29
+        specifier: ^1.0.30
+        version: 1.0.30
       "@playnest/web":
         specifier: workspace:*
         version: link:../../packages/web
@@ -81,8 +81,8 @@ importers:
   apps/api:
     dependencies:
       "@playnest/core":
-        specifier: ^1.0.29
-        version: 1.0.29
+        specifier: ^1.0.30
+        version: 1.0.30
       "@prisma/client":
         specifier: 6.3.1
         version: 6.3.1(prisma@6.4.0(typescript@5.5.4))(typescript@5.5.4)
@@ -160,8 +160,8 @@ importers:
   apps/shop:
     dependencies:
       "@playnest/core":
-        specifier: ^1.0.29
-        version: 1.0.29
+        specifier: ^1.0.30
+        version: 1.0.30
       "@playnest/web":
         specifier: workspace:*
         version: link:../../packages/web
@@ -1641,10 +1641,10 @@ packages:
         integrity: sha512-Bn5GRonxmPaDRzDgAqCFcNZJHhXmzdzI8xmIoPIG+m/vOGh+PCPMOiWXAML6ADN+dHTPOlVRLtcwFKUNsuAhDA==,
       }
 
-  "@playnest/core@1.0.29":
+  "@playnest/core@1.0.30":
     resolution:
       {
-        integrity: sha512-MFVOwT9eaIq43ucmij/l2uD9qZk6/W74ICAw+tneeYA99QOo2M8YMB0qdPwr7QsmbrjEfQWHezKpwz5rA6MYuA==,
+        integrity: sha512-VmGYcTO1AdA3PNUPTa0UehLh7dxoY3riMgGduf9dVl3WAmUrcQIJEIBGXI0gAcA9zAwv+PyJsL2WM/KPvWBQ4w==,
       }
 
   "@prisma/client@6.3.1":
@@ -6994,7 +6994,7 @@ snapshots:
 
   "@playnest/configs@1.0.1": {}
 
-  "@playnest/core@1.0.29": {}
+  "@playnest/core@1.0.30": {}
 
   "@prisma/client@6.3.1(prisma@6.4.0(typescript@5.5.4))(typescript@5.5.4)":
     optionalDependencies:

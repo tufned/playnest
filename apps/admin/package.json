@@ -11,7 +11,7 @@
     "test": "echo \"vitest --run\""
   },
   "dependencies": {
-    "@playnest/core": "^1.0.29",
+    "@playnest/core": "^1.0.30",
     "@playnest/web": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
