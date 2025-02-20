@@ -13,6 +13,8 @@ npm publish
 
 cd ../../
 
+sleep 1
+
 # update @playnest/configs in apps
 pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop" --filter="@playnest/core" --filter="@playnest/web"
 

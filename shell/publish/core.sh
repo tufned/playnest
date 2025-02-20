@@ -16,6 +16,8 @@ npm publish
 
 cd ../../
 
+sleep 1
+
 # update @playnest/core in apps
 pnpm update @playnest/core --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop"
 
