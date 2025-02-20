@@ -27,10 +27,10 @@
     "test": "echo \"vitest\""
   },
   "devDependencies": {
+    "@playnest/configs": "^1.0.3",
+    "@types/node": "^22.9.0",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "typescript": "5.5.4",
-    "@playnest/configs": "^1.0.0",
-    "@types/node": "^22.9.0"
+    "typescript": "5.5.4"
   }
 }

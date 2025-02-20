@@ -16,7 +16,7 @@ cd ../../
 # update @playnest/configs in apps
 pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop" --filter="@playnest/core" --filter="@playnest/web"
 
-git add pnpm-lock.yaml packages/configs/package.json apps/**/package.json
+git add pnpm-lock.yaml packages/**/package.json apps/**/package.json
 git commit -m "chore(@playnest/configs): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
 
 echo "✅ @playnest/configs published"
