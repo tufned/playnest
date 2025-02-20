@@ -12,7 +12,7 @@ echo "📤 Publishing $NEW_VERSION to npm..."
 npm publish
 echo "✅ @playnest/configs published"
 
-sleep 6
+sleep 8
 
 cd ../../
 
@@ -23,6 +23,5 @@ pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin
 
 git add pnpm-lock.yaml packages/**/package.json apps/**/package.json
 git commit -m "chore(@playnest/configs): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
-
 
 echo "☑️ Updated"

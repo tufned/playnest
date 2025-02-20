@@ -10,8 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "./src"),
-      "@playnest/web": path.resolve(__dirname, "../../packages/web/src")
+      "~": path.resolve(__dirname, "./src")
     }
   }
 });

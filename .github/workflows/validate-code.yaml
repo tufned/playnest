@@ -17,9 +17,6 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install TypeScript
-        run: npm install typescript@5.5.4
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -37,9 +34,6 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
-      - name: Clear pnpm cache
-        run: pnpm store prune
 
       - name: Install dependencies
         run: pnpm install

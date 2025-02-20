@@ -5,22 +5,6 @@
 CHANGED_CONFIGS=$(git diff --name-only "origin/$(git rev-parse --abbrev-ref HEAD)" HEAD packages/configs/ | wc -l)
 if [ "$CHANGED_CONFIGS" -gt 0 ]; then
   echo "❗Changes detected in @playnest/configs. Publishing is required"
-fi
-
-# Check for changes in @playnest/core
-CHANGED_CORE=$(git diff --name-only "origin/$(git rev-parse --abbrev-ref HEAD)" HEAD packages/core/ | wc -l)
-if [ "$CHANGED_CORE" -gt 0 ]; then
-  echo "❗Changes detected in @playnest/core. Publishing is required"
-fi
-
-# Check for changes in @playnest/web
-CHANGED_WEB=$(git diff --name-only "origin/$(git rev-parse --abbrev-ref HEAD)" HEAD packages/web/ | wc -l)
-if [ "$CHANGED_WEB" -gt 0 ]; then
-  echo "❗Changes detected in @playnest/web. Publishing is required"
-fi
-
-
-if [ "$CHANGED_CONFIGS" -gt 0 ] || [ "$CHANGED_CORE" -gt 0 ] || [ "$CHANGED_WEB" -gt 0 ]; then
   echo 'Run "pnpm push-publish" to push changes and publish packages'
   exit 1
 fi

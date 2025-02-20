@@ -52,10 +52,9 @@ FROM base AS runner
 WORKDIR /app
 
 COPY --from=pruner /app/out/json/ .
-COPY --from=builder /app/apps/api/dist /app/apps/api/dist
 COPY --from=installer-prod /app/node_modules /app/node_modules
-
-RUN ls -la
+COPY --from=builder /app/apps/api/dist /app/apps/api/dist
+COPY --from=builder /app/node_modules/@playnest/core/dist /app/node_modules/@playnest/core/dist
 
 WORKDIR /app/apps/api
 
