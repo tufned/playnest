@@ -1,2 +1,2 @@
-export * from "./response.types";
-export * from "./domains/user.types";
+export * from "./response.types.js";
+export * from "./domains/user.types.js";
