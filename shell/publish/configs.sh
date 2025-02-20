@@ -10,9 +10,9 @@ echo "🔄 Updated version: v$CURRENT_VERSION → $NEW_VERSION"
 
 echo "📤 Publishing $NEW_VERSION to npm..."
 npm publish
+echo "✅ @playnest/configs published"
 
 sleep 3
-echo "✅ @playnest/configs published"
 
 cd ../../
 
