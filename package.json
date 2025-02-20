@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "prisma:generate": "pnpm --filter=@playnest/api generate",
     "prisma:migrate": "pnpm --filter=@playnest/api migrate",
-    "prisma:deploy": "pnpm --filter=@playnest/api deploy"
+    "prisma:deploy": "pnpm --filter=@playnest/api deploy",
+    "push-publish": "sh shell/push-publish.sh"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
