@@ -11,9 +11,12 @@ echo "🔄 Updated version: v$CURRENT_VERSION → $NEW_VERSION"
 echo "📤 Publishing $NEW_VERSION to npm..."
 npm publish
 
+sleep 3
+echo "✅ @playnest/configs published"
+
 cd ../../
 
-sleep 1
+echo "🔄 Updating @playnest/configs in other apps"
 
 # update @playnest/configs in apps
 pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin" --filter="@playnest/shop" --filter="@playnest/core" --filter="@playnest/web"
@@ -21,4 +24,5 @@ pnpm update @playnest/configs --filter="@playnest/api" --filter="@playnest/admin
 git add pnpm-lock.yaml packages/**/package.json apps/**/package.json
 git commit -m "chore(@playnest/configs): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
 
-echo "✅ @playnest/configs published"
+
+echo "☑️ Updated"
