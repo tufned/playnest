@@ -10,7 +10,6 @@
     "dev": "nodemon",
     "lint": "eslint src",
     "test": "vitest --run",
-    "postinstall": "prisma generate",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
     "deploy": "prisma migrate deploy && prisma generate"

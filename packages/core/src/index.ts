@@ -1,2 +1,2 @@
-console.log(true);
-console.log(true);
+export * from "./types/index";
+export * from "./configs/index";

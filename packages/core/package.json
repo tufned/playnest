@@ -6,16 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    "./types/*": {
-      "types": "./dist/types/*.d.ts",
-      "import": "./dist/types/*.js"
-    },
-    "./configs/*": {
-      "types": "./dist/configs/*.d.ts",
-      "import": "./dist/configs/*.js"
-    }
-  },
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],
@@ -23,8 +14,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "lint": "eslint src",
-    "test": "echo \"vitest\""
+    "lint": "eslint src"
   },
   "devDependencies": {
     "@playnest/configs": "^1.0.3",
