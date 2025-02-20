@@ -10,7 +10,7 @@
     "test": "vitest --run"
   },
   "dependencies": {
-    "@playnest/core": "^1.0.0",
+    "@playnest/core": "^1.0.29",
     "@playnest/web": "workspace:*",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
@@ -24,10 +24,10 @@
     "@playnest/configs": "^1.0.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
-    "@vitejs/plugin-react-swc": "^3.8.0",
     "@types/node": "^22.9.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^8.57.0",
     "jsdom": "^25.0.1",
     "postcss": "^8",
