@@ -21,6 +21,5 @@ pnpm update @playnest/core —filter @playnest/api —filter @playnest/admin —
 
 git add packages/core/package.json apps/**/package.json
 git commit -m "chore(@playnest/core): version patch [v$CURRENT_VERSION → $NEW_VERSION]"
-git push --no-verify origin "$(git rev-parse --abbrev-ref HEAD)"
 
 echo "✅ Published"
