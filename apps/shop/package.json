@@ -10,7 +10,7 @@
     "test": "vitest --run"
   },
   "dependencies": {
-    "@playnest/core": "^1.0.33",
+    "@playnest/core": "^1.0.34",
     "@playnest/web": "workspace:*",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
