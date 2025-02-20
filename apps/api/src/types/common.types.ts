@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { UserJwtPayloadDTO } from "@playnest/core/types/domains/user.types";
+import { UserJwtPayloadDTO } from "@playnest/core";
 
 export interface EnhancedError extends Error {
   status: number;

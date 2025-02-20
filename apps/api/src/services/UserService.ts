@@ -1,4 +1,4 @@
-import { UserSignupDTO } from "@playnest/core/types/domains/user.types";
+import { UserSignupDTO } from "@playnest/core";
 import { createHash } from "../lib/bcrypt.js";
 
 class UserService {

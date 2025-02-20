@@ -1,4 +1,4 @@
-import { UserLoginDTO } from "@playnest/core/types/domains/user.types";
+import { UserLoginDTO } from "@playnest/core";
 
 export const defaultValues: UserLoginDTO = {
   email: "",

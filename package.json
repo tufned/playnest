@@ -15,7 +15,8 @@
     "prisma:generate": "pnpm --filter=@playnest/api generate",
     "prisma:migrate": "pnpm --filter=@playnest/api migrate",
     "prisma:deploy": "pnpm --filter=@playnest/api deploy",
-    "push-publish": "sh shell/push-publish.sh"
+    "push-publish": "sh shell/push-publish.sh",
+    "update:core": "pnpm update @playnest/core --filter=\"@playnest/api\" --filter=\"@playnest/admin\" --filter=\"@playnest/shop\""
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

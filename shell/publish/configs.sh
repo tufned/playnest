@@ -12,7 +12,7 @@ echo "📤 Publishing $NEW_VERSION to npm..."
 npm publish
 echo "✅ @playnest/configs published"
 
-sleep 3
+sleep 6
 
 cd ../../
 
