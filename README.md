@@ -5,7 +5,7 @@ This is a monorepo built using `Turborepo`.
 - `apps/api`: Express.js + Prisma ORM
 - `apps/shop`: Next.js + Redux-toolkit
 - `apps/admin`: React.js + Zustand
-- `packages/core`: shared library for all apps (shop, admin and api); published on npm
+- `packages/core`: shared library for all apps (shop, admin and api) with core types and configs
 - `packages/web`: shared library for frontend apps (shop and admin)
 - `packages/configs`: typescript, eslint, prettier configurations; published on npm
 
