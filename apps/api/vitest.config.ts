@@ -11,10 +11,5 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html"]
     }
-  },
-  resolve: {
-    alias: {
-      "@playnest/shared": path.resolve(__dirname, "../../packages/shared/src")
-    }
   }
 });

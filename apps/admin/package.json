@@ -11,13 +11,13 @@
     "test": "echo \"vitest --run\""
   },
   "dependencies": {
-    "@playnest/shared": "workspace:*",
+    "@playnest/core": "workspace:*",
     "@playnest/web": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@playnest/configs": "workspace:*",
+    "@playnest/configs": "^1.0.3",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.8.0",

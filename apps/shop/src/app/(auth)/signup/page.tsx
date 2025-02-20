@@ -8,7 +8,7 @@ import authService from "~/services/auth.service";
 import { defaultValues } from "~/app/(auth)/signup/constats";
 import { authErrors } from "~/constants/errors";
 import PasswordVisibility from "~/components/auth/password-visibility/PasswordVisibility";
-import { authConfig } from "@playnest/shared/configs/auth.config";
+import { authConfig } from "@playnest/core";
 import InputPassword from "~/components/auth/input-password/InputPassword";
 import InputEmail from "~/components/auth/input-email/InputEmail";
 import AuthForm from "~/components/auth/auth-form/AuthForm";

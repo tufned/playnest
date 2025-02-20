@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import envConfig from "~/config/env.config";
-import { ResponseDTO } from "@playnest/shared/types/response.types";
+import { ResponseDTO } from "@playnest/core";
 
 type AsyncResponse<T extends object> = Promise<ResponseDTO<T>>;
 

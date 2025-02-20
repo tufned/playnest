@@ -1,9 +1,5 @@
 import { errors } from "~/constants/errors";
-import {
-  ResponseDTO,
-  ResponseFailDTO,
-  ResponseSuccessDTO
-} from "@playnest/shared/types/response.types";
+import { ResponseDTO, ResponseFailDTO, ResponseSuccessDTO } from "@playnest/core";
 import ResponseMapper from "~/mappers/response.mapper";
 
 export function requestDecorator<T extends object, P = void>(

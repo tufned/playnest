@@ -10,7 +10,6 @@
     "dev": "nodemon",
     "lint": "eslint src",
     "test": "vitest --run",
-    "postinstall": "prisma generate",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
     "deploy": "prisma migrate deploy && prisma generate"
@@ -18,9 +17,9 @@
   "author": "Den Funderat <funderatdenis@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@playnest/shared": "workspace:*",
+    "@playnest/core": "workspace:*",
     "@prisma/client": "6.3.1",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -30,7 +29,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@playnest/configs": "workspace:*",
+    "@playnest/configs": "^1.0.3",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",

@@ -1,4 +1,4 @@
-import { UserLoginDTO, UserSignupDTO } from "@playnest/shared/types/domains/user.types";
+import { UserLoginDTO, UserSignupDTO } from "@playnest/core";
 import { zodValidationError } from "../utils/errorHelpers.js";
 import UserSignupSchema from "./schemas/user-signup.js";
 import UserLoginSchema from "./schemas/user-login.js";

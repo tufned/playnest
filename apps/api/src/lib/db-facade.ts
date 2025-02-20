@@ -1,4 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import pkg from "@prisma/client";
+
+const { PrismaClient } = pkg;
 
 class Database {
   private static readonly prisma = new PrismaClient();

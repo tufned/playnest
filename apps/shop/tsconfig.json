@@ -20,6 +20,5 @@
     "**/*.spec.js",
     "**/*.test.ts",
     "**/*.spec.ts"
-  ],
-  "references": [{ "path": "../../packages/shared" }]
+  ]
 }
