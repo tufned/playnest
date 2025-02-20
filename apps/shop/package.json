@@ -1,0 +1,41 @@
+{
+  "name": "@playnest/shop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3390",
+    "build": "next build",
+    "start": "next start -p 3390",
+    "lint": "eslint .",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "@playnest/core": "workspace:*",
+    "@playnest/web": "workspace:*",
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
+    "next": "15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.53.2",
+    "react-redux": "^9.2.0"
+  },
+  "devDependencies": {
+    "@playnest/configs": "^1.0.3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.9.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^8.57.0",
+    "jsdom": "^25.0.1",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "sass": "^1.81.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.5.4",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8"
+  }
+}

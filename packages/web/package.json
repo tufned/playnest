@@ -1,0 +1,20 @@
+{
+  "name": "@playnest/web",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src",
+    "test": "echo \"vitest\""
+  },
+  "keywords": [],
+  "author": "Den Funderat <funderatdenis@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@playnest/configs": "workspace:*",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  }
+}
