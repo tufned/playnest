@@ -4,15 +4,15 @@ CHANGED_CORE=$(git diff --name-only HEAD~1 HEAD packages/core/ | wc -l)
 CHANGED_WEB=$(git diff --name-only HEAD~1 HEAD packages/web/ | wc -l)
 
 if [ "$CHANGED_CONFIGS" -gt 0 ]; then
-  sh "./publish/configs.sh"
+  sh "shell/publish/configs.sh"
 fi
 
 if [ "$CHANGED_CORE" -gt 0 ]; then
-  sh "./publish/core.sh"
+  sh "shell/publish/core.sh"
 fi
 
 if [ "$CHANGED_WEB" -gt 0 ]; then
-  sh "./publish/web.sh"
+  sh "shell/publish/web.sh"
 fi
 
 git push --no-verify origin "$(git rev-parse --abbrev-ref HEAD)"
