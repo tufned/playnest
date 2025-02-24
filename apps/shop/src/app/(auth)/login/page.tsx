@@ -26,9 +26,9 @@ const LoginPage = () => {
   } = useForm<UserLoginDTO>({ defaultValues });
 
   const onSubmit: SubmitHandler<UserLoginDTO> = async (data) => {
-    const token = await AuthService.login({ data });
-    if (!token.success) return;
-    dispatch(setAccessToken(token.data!.accessToken));
+    const response = await AuthService.login({ data });
+    if (!response.success) return;
+    dispatch(setAccessToken(response.data!.accessToken));
     router.replace(routes.index);
   };
 

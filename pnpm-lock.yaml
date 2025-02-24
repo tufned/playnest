@@ -186,6 +186,9 @@ importers:
       react-redux:
         specifier: ^9.2.0
         version: 9.2.0(@types/react@19.0.10)(react@19.0.0)(redux@5.0.1)
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       "@playnest/configs":
         specifier: ^1.0.3
@@ -6070,6 +6073,13 @@ packages:
       }
     engines: { node: ">= 0.4.0" }
 
+  uuid@11.1.0:
+    resolution:
+      {
+        integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==,
+      }
+    hasBin: true
+
   v8-compile-cache-lib@3.0.1:
     resolution:
       {
@@ -9954,6 +9964,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@11.1.0: {}
 
   v8-compile-cache-lib@3.0.1: {}
 

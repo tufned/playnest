@@ -14,7 +14,8 @@ export default {
         secondary: "#FDFDFD",
         secondaryBorder: "#dfdee3",
         dark: "#2D355E",
-        alert: "#D45058"
+        alert: "#D45058",
+        alertDimmed: "rgba(193,77,84,0.7)",
       }
     }
   },
