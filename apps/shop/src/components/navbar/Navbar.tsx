@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "~/components/navbar/navbar.module.scss";
 import routes from "~/constants/routes";
 import NavbarItem from "~/components/navbar/NavbarItem";
@@ -18,13 +18,27 @@ import { useAppDispatch, useAppSelector } from "~/hooks/useRedux";
 import AuthService from "~/services/auth.service";
 import { setAccessToken } from "~/redux/api/auth";
 import { useRouter } from "next/navigation";
+import { UserDTO } from "@playnest/core";
+import userService from "~/services/user.service";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const isAuthorized = useAppSelector((state) => state.common.isAuthorized);
+  const { isAuthorized, userJwtPayload } = useAppSelector((state) => state.common);
 
-  // TODO: fetch user data
+  const [user, setUser] = useState<UserDTO | null>(null);
+
+  useEffect(() => {
+    async function getUser() {
+      if (!isAuthorized || !userJwtPayload) return;
+      const { id } = userJwtPayload;
+      const response = await userService.get({ id });
+      if (!response.success) return;
+      setUser(response.data!);
+    }
+
+    void getUser();
+  }, [isAuthorized, userJwtPayload]);
 
   const handleLogout = async () => {
     const response = await AuthService.logout();
@@ -42,7 +56,7 @@ const Navbar = () => {
         <div className={styles.navbarList}>
           <LinkNavbarItem route={routes.index} title="Головна" icon={homeIcon} />
           <LinkNavbarItem route={routes.games} title="Ігри" icon={gamepadIcon2} />
-          {isAuthorized && (
+          {isAuthorized && user && (
             <LinkNavbarItem
               route={routes.dashboard}
               title="Гніздечко"
@@ -52,9 +66,9 @@ const Navbar = () => {
           <LinkNavbarItem route={routes.guide} title="Посібник" icon={guideIcon} />
         </div>
         <div className={styles.navbarList}>
-          {isAuthorized ? (
+          {isAuthorized && user ? (
             <>
-              <NavbarItem title="username" icon={userIcon} />
+              <NavbarItem title={user.nickname} icon={userIcon} />
               <NavbarItem title="Вийти" icon={logOutIcon} onClick={handleLogout} />
             </>
           ) : (

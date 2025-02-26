@@ -24,11 +24,14 @@ class AuthController {
 
   refreshAccessToken = async (req: Request, res: Response) => {
     const { refreshToken } = req.cookies;
-    if (!refreshToken) throw createError(401, errors.refreshTokenNotRetrieved);
+    if (!refreshToken) {
+      res.clearCookie(authConfig.ACCESS_TOKEN);
+      throw createError(401, errors.refreshTokenNotRetrieved);
+    }
 
     const tokens = await this.authService.refreshAccessToken(res, refreshToken);
 
-    res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.cookie(authConfig.ACCESS_TOKEN, tokens.accessToken, COOKIE_OPTIONS);
     res.status(200).json(this.prepareResponse(tokens));
   };
 
@@ -37,6 +40,7 @@ class AuthController {
     const tokens = await this.authService.signup(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.cookie(authConfig.ACCESS_TOKEN, tokens.accessToken, COOKIE_OPTIONS);
     res.status(201).json(this.prepareResponse(tokens));
   };
 
@@ -45,11 +49,13 @@ class AuthController {
     const tokens = await this.authService.login(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
+    res.cookie(authConfig.ACCESS_TOKEN, tokens.accessToken, COOKIE_OPTIONS);
     res.status(200).json(this.prepareResponse(tokens));
   };
 
   logout = async (_req: Request, res: Response) => {
     res.clearCookie(authConfig.REFRESH_TOKEN);
+    res.clearCookie(authConfig.ACCESS_TOKEN);
     res.status(200).json(this.responseMapper.toSuccess());
   };
 }

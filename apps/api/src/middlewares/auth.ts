@@ -8,11 +8,11 @@ const authMiddleware: RequestHandler = (
   _res: Response,
   next: NextFunction
 ) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) throw unauthorizedError();
+  const { accessToken } = req.cookies;
+  if (!accessToken) throw unauthorizedError();
 
   const tokenService = new TokenService();
-  const tokenPayload = tokenService.validateAccessToken(token);
+  const tokenPayload = tokenService.validateAccessToken(accessToken);
   if (!tokenPayload) throw unauthorizedError();
 
   (req as EnhancedRequest).user = tokenPayload;

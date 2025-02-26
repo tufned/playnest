@@ -23,6 +23,7 @@ class AuthService {
   async refreshAccessToken(res: Response, refreshToken: string): Promise<ITokens> {
     const tokenPayload = this.tokenService.validateRefreshToken(refreshToken);
     if (!tokenPayload) {
+      res.clearCookie(authConfig.ACCESS_TOKEN);
       res.clearCookie(authConfig.REFRESH_TOKEN);
       throw createError(400, errors.badRefreshToken);
     }
