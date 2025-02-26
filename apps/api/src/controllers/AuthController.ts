@@ -1,18 +1,25 @@
 import { Request, Response } from "express";
-import { success } from "../utils/responses.js";
 import AuthService from "../services/AuthService.js";
 import { authConfig, COOKIE_OPTIONS } from "../constants/auth.js";
 import { createError } from "../utils/errorHelpers.js";
 import { errors } from "../constants/errors.js";
 import UserValidator from "../validations/UserValidator.js";
+import ResponseMapper from "../mappers/ResponseMapper.js";
+import { ITokens } from "../types/auth.types.js";
 
 class AuthController {
-  private readonly authService: AuthService;
-  private readonly userValidator: UserValidator;
+  constructor(
+    private readonly authService = new AuthService(),
+    private readonly userValidator = new UserValidator(),
+    private readonly responseMapper = new ResponseMapper()
+  ) {
+    this.authService = authService;
+    this.userValidator = userValidator;
+    this.responseMapper = responseMapper;
+  }
 
-  constructor() {
-    this.authService = new AuthService();
-    this.userValidator = new UserValidator();
+  private prepareResponse(tokens: ITokens) {
+    return this.responseMapper.toSuccess({ accessToken: tokens.accessToken });
   }
 
   refreshAccessToken = async (req: Request, res: Response) => {
@@ -22,7 +29,7 @@ class AuthController {
     const tokens = await this.authService.refreshAccessToken(res, refreshToken);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
-    res.status(200).json(success({ accessToken: tokens.accessToken }));
+    res.status(200).json(this.prepareResponse(tokens));
   };
 
   signup = async (req: Request, res: Response) => {
@@ -30,7 +37,7 @@ class AuthController {
     const tokens = await this.authService.signup(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
-    res.status(201).json(success({ accessToken: tokens.accessToken }));
+    res.status(201).json(this.prepareResponse(tokens));
   };
 
   login = async (req: Request, res: Response) => {
@@ -38,12 +45,12 @@ class AuthController {
     const tokens = await this.authService.login(user);
 
     res.cookie(authConfig.REFRESH_TOKEN, tokens.refreshToken, COOKIE_OPTIONS);
-    res.status(200).json(success({ accessToken: tokens.accessToken }));
+    res.status(200).json(this.prepareResponse(tokens));
   };
 
   logout = async (_req: Request, res: Response) => {
     res.clearCookie(authConfig.REFRESH_TOKEN);
-    res.status(200).json(success());
+    res.status(200).json(this.responseMapper.toSuccess());
   };
 }
 
