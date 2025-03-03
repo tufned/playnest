@@ -1,44 +1,39 @@
 import React from "react";
 import Input from "~/components/input/Input";
 import { authErrors } from "~/constants/errors";
-import { authConfig } from "@playnest/core";
 import { FieldError, FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 interface InputPasswordProps<T extends FieldValues> {
   register: UseFormReturn<T>["register"];
   error?: FieldError;
   isPaswInputShown: boolean;
+  passwordFieldValue: string;
   customLabel?: string;
   customField?: string;
 }
 
-const InputPassword = <T extends FieldValues>({
+function InputPasswordConfirm<T extends FieldValues>({
   error,
   register,
   isPaswInputShown,
+  passwordFieldValue,
   customLabel,
   customField
-}: InputPasswordProps<T>) => {
+}: InputPasswordProps<T>) {
   return (
     <Input
-      label={customLabel || "Пароль"}
+      label={customLabel || "Підтвердження паролю"}
       placeholder={isPaswInputShown ? "qwErty1234" : "********"}
       error={error}
-      {...register((customField || "password") as Path<T>, {
+      {...register((customField || "passwordConfirm") as Path<T>, {
         required: authErrors.requiredField(),
-        minLength: {
-          value: authConfig.password.minLength,
-          message: authErrors.minLength(authConfig.password.minLength)
-        },
-        maxLength: {
-          value: authConfig.password.maxLength,
-          message: authErrors.maxLength(authConfig.password.maxLength)
-        },
-        validate: (val) => val.toLowerCase() !== val || authErrors.passwordUpperCase
+        validate: (val) => {
+          return val === passwordFieldValue || authErrors.passwordMismatch;
+        }
       })}
       type={isPaswInputShown ? "text" : "password"}
     />
   );
-};
+}
 
-export default InputPassword;
+export default InputPasswordConfirm;

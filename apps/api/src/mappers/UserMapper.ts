@@ -14,7 +14,8 @@ class UserMapper {
 
   toJwtPayload(user: User): UserJwtPayloadDTO {
     return {
-      id: user.id
+      id: user.id,
+      nickname: user.nickname
     };
   }
 }

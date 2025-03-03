@@ -8,7 +8,7 @@ const URLs = {
   users: {
     get: (id: number) => `/users/${id}`,
     update: (id: number) => `/users/${id}`,
-    updatePassword: (id: number) => `/users/${id}`
+    updatePassword: (id: number) => `/users/${id}/password`
   }
 } as const;
 

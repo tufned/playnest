@@ -26,4 +26,5 @@ export interface UserDTO {
 
 export interface UserJwtPayloadDTO {
   id: number;
+  nickname: string;
 }

@@ -6,7 +6,7 @@ interface ModalShellProps {
 
 function ModalShell({ content }: ModalShellProps) {
   return (
-    <div className="absolute top-0 left-0 z-[99999] h-screen w-screen bg-dimmedScreen flex-center">
+    <div className="absolute top-0 left-0 h-screen w-screen bg-dimmedScreen flex-center">
       {content}
     </div>
   );
