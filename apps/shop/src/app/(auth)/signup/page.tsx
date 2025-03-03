@@ -16,6 +16,7 @@ import { setAccessToken } from "~/redux/api/auth";
 import { useAppDispatch } from "~/hooks/useRedux";
 import { useRouter } from "next/navigation";
 import routes from "~/constants/routes";
+import InputPasswordConfirm from "~/components/auth/input-password-confirm/InputPasswordConfirm";
 
 const SignupPage = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +26,7 @@ const SignupPage = () => {
   const {
     register,
     handleSubmit,
-    getValues,
+    watch,
     formState: { errors }
   } = useForm<UserSignupForm>({ defaultValues });
 
@@ -61,18 +62,11 @@ const SignupPage = () => {
         isPaswInputShown={isPaswInputShown}
       />
       <div className="flex flex-col items-end">
-        <Input
-          label="Підтвердження паролю"
-          placeholder={isPaswInputShown ? "qwErty1234" : "********"}
+        <InputPasswordConfirm
           error={errors.passwordConfirm}
-          {...register("passwordConfirm", {
-            required: authErrors.requiredField(),
-            validate: (val) => {
-              const pasw = getValues("password");
-              return val === pasw || authErrors.passwordMismatch;
-            }
-          })}
-          type={isPaswInputShown ? "text" : "password"}
+          register={register}
+          isPaswInputShown={isPaswInputShown}
+          passwordFieldValue={watch("password")}
         />
         <PasswordVisibility
           visibilityToggle={() => setIsPaswInputShown((prev) => !prev)}

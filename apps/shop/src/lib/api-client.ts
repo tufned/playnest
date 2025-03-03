@@ -18,11 +18,11 @@ class ApiClient {
     );
   }
 
-  responseInterceptor(response: AxiosResponse) {
+  private responseInterceptor(response: AxiosResponse) {
     return response.data;
   }
 
-  responseErrorInterceptor(error: AxiosError) {
+  private responseErrorInterceptor(error: AxiosError) {
     return error?.response?.data ? error.response.data : error;
   }
 
@@ -36,6 +36,10 @@ class ApiClient {
 
   put<T extends object>(url: string, data?: unknown, config = {}): AsyncResponse<T> {
     return this.axiosInstance.put(url, data, config);
+  }
+
+  patch<T extends object>(url: string, data?: unknown, config = {}): AsyncResponse<T> {
+    return this.axiosInstance.patch(url, data, config);
   }
 
   delete(url: string, config = {}): AsyncResponse<Record<string, unknown>> {

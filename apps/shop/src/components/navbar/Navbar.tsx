@@ -9,29 +9,17 @@ import Link from "next/link";
 import homeIcon from "~/assets/icons/home.svg";
 import guideIcon from "~/assets/icons/file-question.svg";
 import userIcon from "~/assets/icons/user.svg";
-import logOutIcon from "~/assets/icons/log-out.svg";
 import logInIcon from "~/assets/icons/log-in.svg";
 import gamepadIcon2 from "~/assets/icons/gaming-pad-2.svg";
 import dashboardIcon from "~/assets/icons/layout-alt.svg";
 import BrandLogo from "~/components/brand-logo/BrandLogo";
-import { useAppDispatch, useAppSelector } from "~/hooks/useRedux";
-import AuthService from "~/services/auth.service";
-import { setAccessToken } from "~/redux/api/auth";
-import { useRouter } from "next/navigation";
+import { useAppSelector } from "~/hooks/useRedux";
+import { useModalContext } from "~/context/modal-context";
+import ProfileModalContainer from "~/components/profile-modal/ProfileModalContainer";
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const isAuthorized = useAppSelector((state) => state.common.isAuthorized);
-
-  // TODO: fetch user data
-
-  const handleLogout = async () => {
-    const response = await AuthService.logout();
-    if (!response.success) return;
-    dispatch(setAccessToken(null));
-    router.replace(routes.index);
-  };
+  const { isAuthorized, userJwtPayload } = useAppSelector((state) => state.common);
+  const { openModal } = useModalContext();
 
   return (
     <nav className="border-r border-primaryDimmed my-[35px] flex flex-col items-center">
@@ -52,11 +40,12 @@ const Navbar = () => {
           <LinkNavbarItem route={routes.guide} title="Посібник" icon={guideIcon} />
         </div>
         <div className={styles.navbarList}>
-          {isAuthorized ? (
-            <>
-              <NavbarItem title="username" icon={userIcon} />
-              <NavbarItem title="Вийти" icon={logOutIcon} onClick={handleLogout} />
-            </>
+          {isAuthorized && userJwtPayload ? (
+            <NavbarItem
+              title={userJwtPayload.nickname}
+              icon={userIcon}
+              onClick={() => openModal({ component: <ProfileModalContainer /> })}
+            />
           ) : (
             <LinkNavbarItem route={routes.login} title="Увійти" icon={logInIcon} />
           )}

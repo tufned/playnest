@@ -1,5 +1,11 @@
-import { UserLoginDTO, UserSignupDTO } from "@playnest/core";
-import { UserSignupForm } from "~/types";
+import {
+  UserDTO,
+  UserLoginDTO,
+  UserSignupDTO,
+  UserUpdateDTO,
+  UserUpdatePasswordDTO
+} from "@playnest/core";
+import { UserSignupForm, UserUpdateForm, UserUpdatePasswordForm } from "~/types";
 
 class UserMapper {
   toSignupDTO(rawUser: Partial<UserSignupForm>): UserSignupDTO {
@@ -14,6 +20,26 @@ class UserMapper {
     return {
       email: rawUser.email ? rawUser.email.toString().trim().toLowerCase() : "",
       password: rawUser.password ? rawUser.password.toString().trim() : ""
+    };
+  }
+
+  toUpdateDTO(rawUser: UserUpdateForm): UserUpdateDTO {
+    return {
+      nickname: rawUser.nickname ? rawUser.nickname.toString().trim() : ""
+    };
+  }
+
+  static toUpdateFormValues(user: UserDTO): UserUpdateForm {
+    return {
+      email: user.email,
+      nickname: user.nickname
+    };
+  }
+
+  toUserUpdatePasswordDTO(user: UserUpdatePasswordForm): UserUpdatePasswordDTO {
+    return {
+      password: user.password,
+      newPassword: user.newPassword
     };
   }
 }

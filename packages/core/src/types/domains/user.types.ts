@@ -3,10 +3,17 @@ export interface UserLoginDTO {
   password: string;
 }
 
-export interface UserSignupDTO {
+export interface UserSignupDTO extends UserLoginDTO {
   nickname: string;
+}
+
+export interface UserUpdateDTO {
+  nickname?: string;
+}
+
+export interface UserUpdatePasswordDTO {
   password: string;
-  email: string;
+  newPassword: string;
 }
 
 export interface UserDTO {
@@ -19,4 +26,5 @@ export interface UserDTO {
 
 export interface UserJwtPayloadDTO {
   id: number;
+  nickname: string;
 }

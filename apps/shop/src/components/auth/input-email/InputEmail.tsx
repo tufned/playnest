@@ -7,14 +7,20 @@ import { FieldError, FieldValues, Path, UseFormReturn } from "react-hook-form";
 interface InputEmailProps<T extends FieldValues> {
   register: UseFormReturn<T>["register"];
   error?: FieldError;
+  disabled?: boolean;
 }
 
-const InputEmail = <T extends FieldValues>({ error, register }: InputEmailProps<T>) => {
+const InputEmail = <T extends FieldValues>({
+  error,
+  register,
+  disabled = false
+}: InputEmailProps<T>) => {
   return (
     <Input
       label="Email"
       placeholder="user@mail.com"
       error={error}
+      disabled={disabled}
       {...register("email" as Path<T>, {
         required: authErrors.requiredField(),
         minLength: {

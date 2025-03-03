@@ -1,12 +1,12 @@
 import { Router } from "express";
-import asyncWrapper from "../middlewares/asyncWrapper.js";
+import asyncDecorator from "../utils/asyncDecorator.js";
 import AuthController from "../controllers/AuthController.js";
 
 const router: Router = Router();
 
-router.post("/login", asyncWrapper(AuthController.login));
-router.post("/signup", asyncWrapper(AuthController.signup));
-router.get("/refresh", asyncWrapper(AuthController.refreshAccessToken));
-router.get("/logout", asyncWrapper(AuthController.logout));
+router.post("/login", asyncDecorator(AuthController.login));
+router.post("/signup", asyncDecorator(AuthController.signup));
+router.get("/refresh", asyncDecorator(AuthController.refreshAccessToken));
+router.get("/logout", asyncDecorator(AuthController.logout));
 
 export default router;

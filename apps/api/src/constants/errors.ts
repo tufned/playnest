@@ -1,6 +1,7 @@
 export const errors = {
   badRequest: "Виникла помилка при запиті",
-  fieldsAreRequired: (fields: string[]) => `Поля ${fields.join(", ")} є обов'язковими`,
+  fieldsAreRequired: (fields: string[]) => `Поля є обов'язковими: ${fields.join(", ")}`,
+  paramsNotReceived: (fields: string[]) => `Параметри не отримані: ${fields.join(", ")}`,
   alreadyRegistered: "Ця електронна пошта вже зареєстрована",
   nicknameIsTaken: "Цей псевдонім вже зайнятий",
   userWithEmailNotExist: "Користувача з цієї поштою не існує",
@@ -8,7 +9,8 @@ export const errors = {
   incorrectEmailOrPasw: "Неправильна пошта або пароль",
   badRefreshToken: "Недійсний refresh token",
   refreshTokenNotRetrieved: "Refresh token не отримано",
-  accessDenied: "Доступ заборонено"
+  accessDenied: "Доступ заборонено",
+  invalidPassword: "Неправильний пароль"
 } as const;
 
 export const schemaErrors = {

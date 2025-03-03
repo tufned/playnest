@@ -1,112 +1,117 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
+import UserService from "../../services/UserService.js";
 import UserRepository from "../../repositories/UserRepository.js";
-import Database from "../../lib/db-facade.js";
 import { createError } from "../../utils/errorHelpers.js";
 import { errors } from "../../constants/errors.js";
+import { createHash, compareHash } from "../../lib/bcrypt.js";
 
-vi.mock("../../lib/db-facade.js", () => ({
-  default: {
-    client: {
-      user: {
-        findUnique: vi.fn(),
-        findFirst: vi.fn(),
-        create: vi.fn()
-      }
-    }
-  }
+vi.mock("../../repositories/UserRepository.js");
+vi.mock("../../lib/bcrypt.js", () => ({
+  createHash: vi.fn(async (password) => `hashed_${password}`),
+  compareHash: vi.fn(async (password, hash) => hash === `hashed_${password}`)
+}));
+vi.mock("../../utils/errorHelpers.js", () => ({
+  createError: vi.fn((status, message) => ({ status, message }))
 }));
 
-describe("UserRepository", () => {
-  let userRepository;
+describe("UserService", () => {
+  let userService;
+  let userRepositoryMock;
 
   beforeEach(() => {
-    userRepository = new UserRepository();
+    userRepositoryMock = new UserRepository();
+    userService = new UserService(userRepositoryMock);
     vi.clearAllMocks();
   });
 
-  describe("getById", () => {
-    it("should return a user by id", async () => {
-      const mockUser = { id: 1, email: "test@test.com" };
-      Database.client.user.findUnique.mockResolvedValue(mockUser);
-
-      const result = await userRepository.getById(1);
-
-      expect(Database.client.user.findUnique).toHaveBeenCalledWith({
-        where: { id: 1 }
-      });
-      expect(result).toEqual(mockUser);
-    });
-
-    it("should return null if user not found", async () => {
-      Database.client.user.findUnique.mockResolvedValue(null);
-
-      const result = await userRepository.getById(1);
-
-      expect(result).toBeNull();
-    });
-  });
-
-  describe("getByField", () => {
-    it("should return a user by field", async () => {
-      const mockUser = { email: "test@test.com" };
-      Database.client.user.findUnique.mockResolvedValue(mockUser);
-
-      const result = await userRepository.getByField({ email: "test@test.com" });
-
-      expect(Database.client.user.findUnique).toHaveBeenCalledWith({
-        where: { email: "test@test.com" }
-      });
-      expect(result).toEqual(mockUser);
-    });
-
-    it("should return null if user not found", async () => {
-      Database.client.user.findUnique.mockResolvedValue(null);
-
-      const result = await userRepository.getByField({ email: "test@test.com" });
-
-      expect(result).toBeNull();
-    });
-  });
-
   describe("create", () => {
-    const mockUserData = {
-      email: "test@test.com",
-      nickname: "testuser",
-      password: "password123"
-    };
-
-    it("should create a new user", async () => {
-      const mockCreatedUser = { ...mockUserData, id: 1 };
-
-      Database.client.user.findUnique.mockResolvedValue(null);
-      Database.client.user.create.mockResolvedValue(mockCreatedUser);
-
-      const result = await userRepository.create(mockUserData);
-
-      expect(Database.client.user.create).toHaveBeenCalledWith({
-        data: mockUserData
+    it("should create a user if email and nickname are unique", async () => {
+      userRepositoryMock.getByField.mockResolvedValue(null);
+      userRepositoryMock.create.mockResolvedValue({
+        id: 1,
+        email: "test@example.com",
+        nickname: "testuser"
       });
-      expect(result).toEqual(mockCreatedUser);
+
+      const user = {
+        email: "test@example.com",
+        nickname: "testuser",
+        password: "password"
+      };
+      const result = await userService.create(user);
+
+      expect(result).toEqual({ id: 1, email: "test@example.com", nickname: "testuser" });
+      expect(createHash).toHaveBeenCalledWith("password");
+      expect(userRepositoryMock.create).toHaveBeenCalledWith({
+        ...user,
+        password: "hashed_password"
+      });
     });
 
-    it("should throw error if email is already registered", async () => {
-      Database.client.user.findUnique
-        .mockResolvedValueOnce({ email: mockUserData.email })
-        .mockResolvedValueOnce(null);
+    it("should throw an error if email is already registered", async () => {
+      userRepositoryMock.getByField.mockResolvedValueOnce({
+        id: 1,
+        email: "test@example.com"
+      });
 
-      await expect(userRepository.create(mockUserData)).rejects.toEqual(
-        createError(409, errors.alreadyRegistered)
-      );
+      await expect(
+        userService.create({
+          email: "test@example.com",
+          nickname: "testuser",
+          password: "password"
+        })
+      ).rejects.toEqual(createError(409, errors.alreadyRegistered));
+    });
+  });
+
+  describe("getById", () => {
+    it("should return a user if found", async () => {
+      userRepositoryMock.getByField.mockResolvedValue({
+        id: 1,
+        email: "test@example.com"
+      });
+      const result = await userService.getById(1);
+      expect(result).toEqual({ id: 1, email: "test@example.com" });
     });
 
-    it("should throw error if nickname is already taken", async () => {
-      Database.client.user.findUnique
-        .mockResolvedValueOnce(null)
-        .mockResolvedValueOnce({ nickname: mockUserData.nickname });
-
-      await expect(userRepository.create(mockUserData)).rejects.toEqual(
-        createError(409, errors.nicknameIsTaken)
+    it("should throw an error if no ID is provided", async () => {
+      await expect(userService.getById(undefined)).rejects.toEqual(
+        createError(409, errors.paramsNotReceived(["id"]))
       );
+    });
+  });
+
+  describe("updatePassword", () => {
+    it("should update the password if the old password is correct", async () => {
+      userRepositoryMock.getByField.mockResolvedValue({
+        id: 1,
+        password: "hashed_oldPassword"
+      });
+      userRepositoryMock.update.mockResolvedValue({
+        id: 1,
+        password: "hashed_newPassword"
+      });
+
+      const result = await userService.updatePassword(1, {
+        password: "oldPassword",
+        newPassword: "newPassword"
+      });
+      expect(result).toEqual({ id: 1, password: "hashed_newPassword" });
+    });
+
+    it("should throw an error if the old password is incorrect", async () => {
+      userRepositoryMock.getByField.mockResolvedValue({
+        id: 1,
+        password: "hashed_oldPassword"
+      });
+      compareHash.mockResolvedValue(false);
+
+      await expect(
+        userService.updatePassword(1, {
+          password: "wrongPassword",
+          newPassword: "newPassword"
+        })
+      ).rejects.toEqual(createError(401, errors.invalidPassword));
     });
   });
 });

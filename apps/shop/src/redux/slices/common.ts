@@ -1,17 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authApi } from "~/redux/api/auth";
+import { jwtDecode } from "jwt-decode";
+import { UserJwtPayloadDTO } from "@playnest/core";
 
-const commonSlice = createSlice({
+export interface CommonSliceState {
+  isAuthorized: boolean;
+  userJwtPayload: UserJwtPayloadDTO | null;
+}
+
+const initialState: CommonSliceState = {
+  isAuthorized: false,
+  userJwtPayload: null
+};
+
+export const commonSlice = createSlice({
   name: "common",
-  initialState: {
-    isAuthorized: false
+  initialState,
+  reducers: {
+    setUserJwtPayload: (
+      state: CommonSliceState,
+      action: PayloadAction<Partial<UserJwtPayloadDTO>>
+    ) => {
+      state.userJwtPayload = {
+        ...state.userJwtPayload!,
+        ...action.payload
+      };
+    }
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
       authApi.endpoints.getAccessToken.matchFulfilled,
       (state, { payload }) => {
-        state.isAuthorized = payload !== null;
+        if (!payload) {
+          state.userJwtPayload = initialState.userJwtPayload;
+          state.isAuthorized = initialState.isAuthorized;
+        } else {
+          state.userJwtPayload = jwtDecode<UserJwtPayloadDTO>(payload);
+          state.isAuthorized = true;
+        }
       }
     );
   }

@@ -16,6 +16,7 @@ export default {
         dark: "#2D355E",
         alert: "#D45058",
         alertDimmed: "rgba(193,77,84,0.7)",
+        dimmedScreen: "rgba(0,0,0,0.2)"
       }
     }
   },
